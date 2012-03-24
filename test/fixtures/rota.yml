@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  cidade_id: 1
+  vendedor_id: 1
+  observacao: MyString
+
+two:
+  cidade_id: 1
+  vendedor_id: 1
+  observacao: MyString

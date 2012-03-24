@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Produto:</b>
+  <%= @item_nota_entrada.produto %>
+</p>
+
+<p>
+  <b>Nota:</b>
+  <%= @item_nota_entrada.nota %>
+</p>
+
+<p>
+  <b>Quantidade:</b>
+  <%= @item_nota_entrada.quantidade %>
+</p>
+
+<p>
+  <b>Valor unitario:</b>
+  <%= @item_nota_entrada.valor_unitario %>
+</p>
+
+<p>
+  <b>Quantidade:</b>
+  <%= @item_nota_entrada.quantidade %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_nota_entrada_path(@item_nota_entrada) %> |
+<%= link_to 'Back', item_nota_entradas_path %>

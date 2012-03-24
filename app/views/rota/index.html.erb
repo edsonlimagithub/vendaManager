@@ -1,0 +1,27 @@
+<h1>Listing rota</h1>
+
+<table>
+  <tr>
+    <th>Cidade</th>
+    <th>Vendedor</th>
+    <th>Observacao</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rota.each do |rotum| %>
+  <tr>
+    <td><%= rotum.cidade_id %></td>
+    <td><%= rotum.vendedor_id %></td>
+    <td><%= rotum.observacao %></td>
+    <td><%= link_to 'Show', rotum %></td>
+    <td><%= link_to 'Edit', edit_rotum_path(rotum) %></td>
+    <td><%= link_to 'Destroy', rotum, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Rotum', new_rotum_path %>

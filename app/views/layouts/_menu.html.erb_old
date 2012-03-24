@@ -1,0 +1,136 @@
+ <%= javascript_include_tag "dropdownPlain" %>
+<div>
+<ul class="dropdown">
+        	<li><a href="#">Cadastros</a>
+        		<ul class="sub_menu">
+        			 <li><a href="#">Produtos</a>
+        			 	<ul>
+        					<li><a href="/produtos/new">Novo</a></li>
+        					<li><a href="/produtos">Lista</a></li>
+        				</ul>        			 	
+        			 </li>
+        			 <li>
+        				<a href="#">Kits</a>
+        				<ul>
+        					<li><a href="/kits/new">Novo</a></li>
+        					<li><a href="/kits">Lista</a></li>
+        				</ul>
+        			 </li>
+        			 <li>
+        				<a href="#">Clientes</a>
+        				<ul>
+        					<li><a href="/clientes/new">Novo</a></li>
+        					<li><a href="/clientes">Lista</a></li>
+        				</ul>
+        			 </li>
+        			  <li>
+        				<a href="#">Vendedores</a>
+        				<ul>
+        					<li><a href="/vendedors/new">Novo</a></li>
+        					<li><a href="/vendedors">Lista</a></li>
+        				</ul>
+        			 </li>
+        			  <li>
+        				<a href="#">Grupos</a>
+        				<ul>
+        					<li><a href="/grupos/new">Novo</a></li>
+        					<li><a href="/grupos">Lista</a></li>
+        				</ul>
+        			 </li>
+        			  <li>
+        				<a href="#">Subgrupos</a>
+        				<ul>
+        					<li><a href="/subgrupos/new">Novo</a></li>
+        					<li><a href="/subgrupos">Lista</a></li>
+        				</ul>
+        			 </li>
+        			 <li>
+        				<a href="#">Cidades</a>
+        				<ul>
+        					<li><a href="/cidades/new">Nova</a></li>
+        					<li><a href="/cidades">Lista</a></li>
+        				</ul>
+        			 </li>
+        		</ul>
+        	</li>
+        	<li><a href="#">Rotas</a>
+        		<ul class="sub_menu">
+        			<li><a href="/rota/new">Nova</a></li>
+        			<li><a href="/rota">Lista</a></li>
+		        </ul>
+        	</li>
+        	<li><a href="#">Game-Practice Equipment</a>
+        		<ul class="sub_menu">
+        			 <li>
+        				<a href="#">Baseball - Softball</a>
+        				<ul>
+        					<li><a href="#">Base Accessories</a></li>
+        					<li><a href="#">Bases &amp; Home Plates</a></li>
+        					<li><a href="#">Game Accessories</a></li>
+        					<li><a href="#">Pitching Rubbers</a></li>
+        				</ul>
+        			 </li>
+        			 <li>
+        				<a href="#">Batting Practice Equipment</a>
+        				<ul>
+        					<li><a href="#">Backstops</a></li>
+        					<li><a href="#">Infield Screens</a></li>
+        					<li><a href="#">Jugs Pitching Machines</a></li>
+        					<li><a href="#">Turf Mats</a></li>
+        					<li><a href="#">Turf Protectors</a></li>
+        					<li><a href="#">Replacement Accessories</a></li>
+        				</ul>
+        			 </li>
+        			 <li>
+        				<a href="#">Batting Cages</a>
+        				<ul>
+        					<li><a href="#">Indoor</a></li>
+        					<li><a href="#">Outdoor</a></li>
+        				</ul>
+        			 </li>
+        			 <li>
+        				<a href="#">Portable Mounds</a>
+        				<ul>
+        					<li><a href="#">Batting Practice Mounds</a></li>
+        					<li><a href="#">Game Mounds</a></li>
+        					<li><a href="#">Practice Mounds</a></li>
+        				</ul>
+        			 </li>
+        			 <li>
+        				<a href="#">Football</a>
+        				<ul>
+        					<li><a href="#">First Down Markers</a></li>
+        					<li><a href="#">Football Accessories</a></li>
+        					<li><a href="#">Football Goalposts</a></li>
+        				</ul>
+        			 </li>
+        			 <li>
+        				<a href="#">Soccer</a>
+        				<ul>
+        					<li><a href="#">Soccer Goals</a></li>
+        					<li><a href="#">Soccer Accessories</a></li>
+        				</ul>
+        			 </li>
+        			 <li><a href="#"> - VIEW ALL - </a></li>
+        		</ul>
+        	</li>
+        	<li><a href="#">Training &amp; Conditioning</a>
+        		<ul class="sub_menu">
+        			 <li><a href="#">Ladders &amp; Sticks</a></li>
+        			 <li><a href="#">Hurdles</a></li>
+        			 <li><a href="#">Training Accessories</a></li>
+        			 <li><a href="#">Smart-Cart Training System</a></li>
+        			 <li><a href="#">Smart-Hurdle Collection</a></li>
+        			 <li><a href="#"> - VIEW ALL - </a></li>
+        		</ul>
+        	</li>
+        	<li><a href="#">Books-Videos</a>
+        		<ul class="sub_menu">
+        			 <li><a href="#">Field Design &amp; Maintenance</a></li>
+        			 <li><a href="#">Turf Management</a></li>
+        			 <li><a href="#">Training</a></li>
+        			 <li><a href="#"> - VIEW ALL - </a></li>
+        		</ul>
+        	</li>
+        </ul>
+</div>	

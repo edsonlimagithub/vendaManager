@@ -1,0 +1,96 @@
+<%= form_for(@kit) do |f| %>
+  <% if @kit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kit.errors.count, "error") %> prohibited this kit from being saved:</h2>
+
+      <ul>
+      <% @kit.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :descricao %><br />
+    <%= f.text_field :descricao %>
+  </div>
+  <div>
+    <input type="button" value="Criar Kit" onClick="validaKit();">
+	<a href="/pesquisa_descricao">Inserir Item</a>
+  </div>
+	<div>
+		<% if not session[:items].nil? %>
+		<table><tr><th>Descricao</th><th>Quantidade</th><th>Excluir</th>
+			<% session[:items].each do |item| %>
+				<% produto = Produto.find(item[:id]) %>
+			<tr>
+				<td><%= produto.descricao %></td>
+				<td><input type="text" size="3" id="quantidade_<%= produto.id %>"></td>
+				<td><a href="/excluir_item_kit?id=<%= produto.id %>">excluir</a></td>
+			</tr>
+			<% end %>
+		</table>
+		<% end %>
+		
+	</div>	
+<script>
+	jQuery(function(){
+		jQuery.superbox();	
+	});	
+
+	var validaKit = function(){
+		var erro = true;
+		$('input[id*="quantidade_"]').each(
+			function(i, e){
+				if( $(e).val() == "" && $(e).val() < 1){
+					erro = false;
+					alert("Não pode haver Produto sem quantidade!");
+					return false;
+				}
+			}
+		);
+		if(erro){
+			preparaEnvio();
+		}
+	}
+	
+	var preparaEnvio = function(){
+		var items = "{"
+		$('input[id*="quantidade_"]').each(
+			function(i, e){
+				var elemento = $(e).attr("id");
+				elementos = elemento.split("_");
+				var  item = "";
+				item += "[";
+				item += i;
+				item += "]";
+				item += "=>";
+				item += "{:id";
+				item += "=>";
+				item += elementos[1];
+				item += ",";
+				item += ":quantidade";
+				item += "=>";
+				item += $(e).val();
+				item += "}";
+				//items.push(item);
+				items += item;
+
+				if($('input[id*="quantidade_"]').length > (i+1)) items += ","; 
+			}
+		);
+		items += "}"
+		enviaKit(items);
+	}
+	
+	var enviaKit = function(items){
+
+		$.post(
+			'/kits/novo',
+			{items:items},
+			function(){}		
+		);		
+	}
+</script>
+<% end %>

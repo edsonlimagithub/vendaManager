@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  numero: MyString
+  data_emissao: 2012-03-17
+  data_entrada: 2012-03-17
+  fornecedor: 1
+  valor_produtos: 1.5
+  valor_despesas: 1.5
+  valor: 
+  filial: 1
+
+two:
+  numero: MyString
+  data_emissao: 2012-03-17
+  data_entrada: 2012-03-17
+  fornecedor: 1
+  valor_produtos: 1.5
+  valor_despesas: 1.5
+  valor: 
+  filial: 1

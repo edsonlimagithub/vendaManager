@@ -1,0 +1,33 @@
+<%= form_for(@consignado) do |f| %>
+  <% if @consignado.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@consignado.errors.count, "error") %> prohibited this consignado from being saved:</h2>
+
+      <ul>
+      <% @consignado.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :cliente_id %><br />
+    <%= f.number_field :cliente_id %>
+  </div>
+  <div class="field">
+    <%= f.label :data %><br />
+    <%= f.datetime_select :data %>
+  </div>
+  <div class="field">
+    <%= f.label :proxima_cobranca %><br />
+    <%= f.datetime_select :proxima_cobranca %>
+  </div>
+  <div class="field">
+    <%= f.label :prazo_dias %><br />
+    <%= f.number_field :prazo_dias %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

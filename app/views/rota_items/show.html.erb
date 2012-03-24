@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Rota:</b>
+  <%= @rota_item.rota_id %>
+</p>
+
+<p>
+  <b>Item:</b>
+  <%= @rota_item.item_id %>
+</p>
+
+<p>
+  <b>Quantidade:</b>
+  <%= @rota_item.quantidade %>
+</p>
+
+<p>
+  <b>Tipo item:</b>
+  <%= @rota_item.tipo_item %>
+</p>
+
+
+<%= link_to 'Edit', edit_rota_item_path(@rota_item) %> |
+<%= link_to 'Back', rota_items_path %>

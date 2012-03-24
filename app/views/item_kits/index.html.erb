@@ -1,0 +1,27 @@
+<h1>Listing item_kits</h1>
+
+<table>
+  <tr>
+    <th>Produto</th>
+    <th>Kit</th>
+    <th>Quantidade</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @item_kits.each do |item_kit| %>
+  <tr>
+    <td><%= item_kit.produto_id %></td>
+    <td><%= item_kit.kit_id %></td>
+    <td><%= item_kit.quantidade %></td>
+    <td><%= link_to 'Show', item_kit %></td>
+    <td><%= link_to 'Edit', edit_item_kit_path(item_kit) %></td>
+    <td><%= link_to 'Destroy', item_kit, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Item kit', new_item_kit_path %>

@@ -1,0 +1,49 @@
+<html>
+<head>
+  <%= javascript_include_tag "jquery.tmpl.min"%>
+  <%= javascript_include_tag "jquery.tmplPlus.min"%>
+<script>
+	
+	$(function(){
+        $("#myTable").tablesorter(); 
+	}); 	
+	
+	var markup = "<tr><td>${descricao}</td><td>${preco_venda}</td><td><a href='/rota/inserir_brinde_rota?id=${id}'>Inserir</a></td></tr>";
+
+	$.template("template", markup);
+
+	var produtosDescricao = function(descricao){		
+		jQuery.getJSON(
+			"/localiza_produto",
+			{descricao:descricao},
+			function(json){	
+					$( "#conteudo" ).empty();
+					$.tmpl("template", json).appendTo("#conteudo");	
+			}
+		);	
+	}
+
+	
+</script>
+
+</head>
+<body>
+<h1>Pesquisa Descrição</h1>
+<a href='#' onClick='fechaJanela()'>Fechar janela</a>
+
+<input type="text" onKeyUp="produtosDescricao(this.value);"/>
+
+
+<table id="myTable" class="tablesorter">
+	<thead>
+		<tr>
+			<td>Descricao</td>
+			<td>Preco</td>
+			<td>Função</td>
+		</tr>
+	<thead>
+	<tbody id="conteudo"></tbody>
+</table>
+
+</body>
+</html>

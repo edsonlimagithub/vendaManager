@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Numero:</b>
+  <%= @nota_entrada.numero %>
+</p>
+
+<p>
+  <b>Data emissao:</b>
+  <%= @nota_entrada.data_emissao %>
+</p>
+
+<p>
+  <b>Data entrada:</b>
+  <%= @nota_entrada.data_entrada %>
+</p>
+
+<p>
+  <b>Fornecedor:</b>
+  <%= @nota_entrada.fornecedor %>
+</p>
+
+<p>
+  <b>Valor produtos:</b>
+  <%= @nota_entrada.valor_produtos %>
+</p>
+
+<p>
+  <b>Valor despesas:</b>
+  <%= @nota_entrada.valor_despesas %>
+</p>
+
+<p>
+  <b>Valor:</b>
+  <%= @nota_entrada.valor %>
+</p>
+
+<p>
+  <b>Filial:</b>
+  <%= @nota_entrada.filial %>
+</p>
+
+
+<%= link_to 'Edit', edit_nota_entrada_path(@nota_entrada) %> |
+<%= link_to 'Back', nota_entradas_path %>

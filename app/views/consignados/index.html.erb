@@ -1,0 +1,29 @@
+<h1>Listing consignados</h1>
+
+<table>
+  <tr>
+    <th>Cliente</th>
+    <th>Data</th>
+    <th>Proxima cobranca</th>
+    <th>Prazo dias</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @consignados.each do |consignado| %>
+  <tr>
+    <td><%= consignado.cliente_id %></td>
+    <td><%= consignado.data %></td>
+    <td><%= consignado.proxima_cobranca %></td>
+    <td><%= consignado.prazo_dias %></td>
+    <td><%= link_to 'Show', consignado %></td>
+    <td><%= link_to 'Edit', edit_consignado_path(consignado) %></td>
+    <td><%= link_to 'Destroy', consignado, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Consignado', new_consignado_path %>

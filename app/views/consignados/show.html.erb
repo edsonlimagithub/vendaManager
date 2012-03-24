@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cliente:</b>
+  <%= @consignado.cliente_id %>
+</p>
+
+<p>
+  <b>Data:</b>
+  <%= @consignado.data %>
+</p>
+
+<p>
+  <b>Proxima cobranca:</b>
+  <%= @consignado.proxima_cobranca %>
+</p>
+
+<p>
+  <b>Prazo dias:</b>
+  <%= @consignado.prazo_dias %>
+</p>
+
+
+<%= link_to 'Edit', edit_consignado_path(@consignado) %> |
+<%= link_to 'Back', consignados_path %>

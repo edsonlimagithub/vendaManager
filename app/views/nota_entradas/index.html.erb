@@ -1,0 +1,37 @@
+<h1>Listing nota_entradas</h1>
+
+<table>
+  <tr>
+    <th>Numero</th>
+    <th>Data emissao</th>
+    <th>Data entrada</th>
+    <th>Fornecedor</th>
+    <th>Valor produtos</th>
+    <th>Valor despesas</th>
+    <th>Valor</th>
+    <th>Filial</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @nota_entradas.each do |nota_entrada| %>
+  <tr>
+    <td><%= nota_entrada.numero %></td>
+    <td><%= nota_entrada.data_emissao %></td>
+    <td><%= nota_entrada.data_entrada %></td>
+    <td><%= nota_entrada.fornecedor %></td>
+    <td><%= nota_entrada.valor_produtos %></td>
+    <td><%= nota_entrada.valor_despesas %></td>
+    <td><%= nota_entrada.valor %></td>
+    <td><%= nota_entrada.filial %></td>
+    <td><%= link_to 'Show', nota_entrada %></td>
+    <td><%= link_to 'Edit', edit_nota_entrada_path(nota_entrada) %></td>
+    <td><%= link_to 'Destroy', nota_entrada, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Nota entrada', new_nota_entrada_path %>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VendaManager</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "ie" %>
+  
+  <%= javascript_include_tag "jquery" %>
+  <%= javascript_include_tag "dropdownPlain" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "tablesorter" %>
+
+  <%= csrf_meta_tags %>
+  
+<script type="javascipt">
+
+</script>
+</head>
+<body>
+	<div class="principal">
+		<div class="topo"></div></br>
+		<div class="menu">
+			<%= render :partial => 'layouts/menu'%>
+		</div></br><br />
+		<div class="conteudo">
+			<%= yield %>
+		</div>
+		<div class="rodape"></div>		
+	</div>
+
+
+</body>
+</html>

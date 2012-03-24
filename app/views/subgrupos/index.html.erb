@@ -1,0 +1,23 @@
+<h1>Listing subgrupos</h1>
+
+<table>
+  <tr>
+    <th>Descricao</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @subgrupos.each do |subgrupo| %>
+  <tr>
+    <td><%= subgrupo.descricao %></td>
+    <td><%= link_to 'Show', subgrupo %></td>
+    <td><%= link_to 'Edit', edit_subgrupo_path(subgrupo) %></td>
+    <td><%= link_to 'Destroy', subgrupo, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Subgrupo', new_subgrupo_path %>

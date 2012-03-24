@@ -1,0 +1,41 @@
+<%= form_for(@item_consignado) do |f| %>
+  <% if @item_consignado.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item_consignado.errors.count, "error") %> prohibited this item_consignado from being saved:</h2>
+
+      <ul>
+      <% @item_consignado.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :produto_id %><br />
+    <%= f.number_field :produto_id %>
+  </div>
+  <div class="field">
+    <%= f.label :consignado_id %><br />
+    <%= f.number_field :consignado_id %>
+  </div>
+  <div class="field">
+    <%= f.label :quantidade_produto %><br />
+    <%= f.text_field :quantidade_produto %>
+  </div>
+  <div class="field">
+    <%= f.label :quantidade_kit %><br />
+    <%= f.text_field :quantidade_kit %>
+  </div>
+  <div class="field">
+    <%= f.label :kit_id %><br />
+    <%= f.number_field :kit_id %>
+  </div>
+  <div class="field">
+    <%= f.label :cobrado %><br />
+    <%= f.text_field :cobrado %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

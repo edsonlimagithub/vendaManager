@@ -1,0 +1,53 @@
+<%= form_for(@produto) do |f| %>
+  <% if @produto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@produto.errors.count, "error") %> prohibited this produto from being saved:</h2>
+
+      <ul>
+      <% @produto.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :descricao %><br />
+    <%= f.text_field :descricao %>
+  </div>
+  <div class="field">
+    
+    <% if @produto.grupo_id %>
+	<%= f.label :grupo_id %><br />	
+	<%= f.text_field 'grupo_id' %>
+    <% else %>
+		<%= f.label :grupo_id %><br />
+	    <%= f.collection_select(:grupo_id, Grupo.order(:descricao), :id, :descricao, {:prompt => true}) %><br />   
+    <% end %>	
+
+  </div>
+  <div class="field">
+    <% if @produto.subgrupo_id %>
+	<%= f.label :subgrupo_id %><br />	
+	<%= f.text_field Subgrupo.find( @produto.subgrupo_id).descricao %>
+    <% else %>
+		<%= f.label :subgrupo_id %><br />
+	    <%= f.collection_select(:subgrupo_id, Subgrupo.order(:descricao), :id, :descricao, {:prompt => true}) %><br />   
+    <% end %>	
+  </div>
+  <div class="field">
+    <%= f.label :preco_compra %><br />
+    <%= f.text_field :preco_compra %>
+  </div>
+  <div class="field">
+    <%= f.label :preco_venda %><br />
+    <%= f.text_field :preco_venda %>
+  </div>
+  <div class="field">
+    <%= f.label :desativado %><br />
+    <%= f.text_field :desativado %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

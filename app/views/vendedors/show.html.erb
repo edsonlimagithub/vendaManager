@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nome:</b>
+  <%= @vendedor.nome %>
+</p>
+
+<p>
+  <b>Telefone1:</b>
+  <%= @vendedor.telefone1 %>
+</p>
+
+<p>
+  <b>Telefone2:</b>
+  <%= @vendedor.telefone2 %>
+</p>
+
+<p>
+  <b>Desativado:</b>
+  <%= @vendedor.desativado %>
+</p>
+
+<p>
+  <b>Logradouro:</b>
+  <%= @vendedor.logradouro %>
+</p>
+
+<p>
+  <b>Caixa postal:</b>
+  <%= @vendedor.caixa_postal %>
+</p>
+
+<p>
+  <b>Bairro:</b>
+  <%= @vendedor.bairro %>
+</p>
+
+<p>
+  <b>Cidade:</b>
+  <%= @vendedor.cidade %>
+</p>
+
+<p>
+  <b>Uf:</b>
+  <%= @vendedor.uf %>
+</p>
+
+
+<%= link_to 'Edit', edit_vendedor_path(@vendedor) %> |
+<%= link_to 'Back', vendedors_path %>

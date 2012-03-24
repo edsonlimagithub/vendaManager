@@ -1,0 +1,29 @@
+<h1>Listing kits</h1>
+
+<table>
+  <tr>
+    <th>Descricao</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @kits.each do |kit| %>
+  <tr>
+    <td><%= kit.descricao %></td>
+    </tr>
+    <% itemKit = ItemKit.find(:all, :conditions => ["kit_id = ?", kit.id]) %>
+    <% itemKit.each do |i|%>
+    	<% produto = Produto.find(i.id)%>
+    	<tr><td><%= produto.descricao %></td></tr>
+    <% end %>
+  
+  <tr>
+    <td><%= link_to 'Show', kit %></td>
+    <td><%= link_to 'Edit', edit_kit_path(kit) %></td>
+    <td><%= link_to 'Destroy', kit, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New Kit', new_kit_path %>

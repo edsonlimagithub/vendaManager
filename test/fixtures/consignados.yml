@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  cliente_id: 1
+  data: 2011-12-17 17:52:26
+  proxima_cobranca: 2011-12-17 17:52:26
+  prazo_dias: 1
+
+two:
+  cliente_id: 1
+  data: 2011-12-17 17:52:26
+  proxima_cobranca: 2011-12-17 17:52:26
+  prazo_dias: 1

@@ -1,0 +1,31 @@
+<h1>Listing item_nota_entradas</h1>
+
+<table>
+  <tr>
+    <th>Produto</th>
+    <th>Nota</th>
+    <th>Quantidade</th>
+    <th>Valor unitario</th>
+    <th>Quantidade</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @item_nota_entradas.each do |item_nota_entrada| %>
+  <tr>
+    <td><%= item_nota_entrada.produto %></td>
+    <td><%= item_nota_entrada.nota %></td>
+    <td><%= item_nota_entrada.quantidade %></td>
+    <td><%= item_nota_entrada.valor_unitario %></td>
+    <td><%= item_nota_entrada.quantidade %></td>
+    <td><%= link_to 'Show', item_nota_entrada %></td>
+    <td><%= link_to 'Edit', edit_item_nota_entrada_path(item_nota_entrada) %></td>
+    <td><%= link_to 'Destroy', item_nota_entrada, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Item nota entrada', new_item_nota_entrada_path %>

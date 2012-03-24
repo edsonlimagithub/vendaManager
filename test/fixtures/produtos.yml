@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  descricao: MyString
+  grupo_id: 1
+  subgrupo_id: 1
+  preco_compra: 1.5
+  preco_venda: 1.5
+  desativado: 
+
+two:
+  descricao: MyString
+  grupo_id: 1
+  subgrupo_id: 1
+  preco_compra: 1.5
+  preco_venda: 1.5
+  desativado: 

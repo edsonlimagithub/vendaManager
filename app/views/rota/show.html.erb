@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cidade:</b>
+  <%= @rotum.cidade_id %>
+</p>
+
+<p>
+  <b>Vendedor:</b>
+  <%= @rotum.vendedor_id %>
+</p>
+
+<p>
+  <b>Observacao:</b>
+  <%= @rotum.observacao %>
+</p>
+
+
+<%= link_to 'Edit', edit_rotum_path(@rotum) %> |
+<%= link_to 'Back', rota_path %>

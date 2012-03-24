@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<title>VENDA MANAGER</title>
+	<%= stylesheet_link_tag "memu-0.1" %>
+	<%= stylesheet_link_tag "memu_atualizado" %>
+	<%= stylesheet_link_tag :application %>
+	
+	<%= javascript_include_tag :jquery %>
+	<%= javascript_include_tag :application %>
+
+	<style type="text/css" media="screen">
+		
+	</style>
+	</head>
+	<body style="margin:0">
+		<br>
+		<br>
+		<center>Venda Manager<br><small>GERENCIADOR DE VENDAS EXTERNAS</small></center>
+		<br />
+		<%= render :partial => 'layouts/menu'%>
+		<br>
+		<br>
+		<div class="principal"></div>
+			<%= yield %>
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+		
+		<script type="text/javascript">
+		  // //google.load("jquery", "1.4.4");
+		  // google.setOnLoadCallback(function() {
+			// $('.js-enabled').memu({ 
+				// icon: {
+					// inset: true,
+					// margin: {
+						// top: 4,
+						// right: 10
+					// }
+				// },
+				// width: 150,
+				// rootWidth: 75,
+				// height: 25
+			// });
+		  // });
+		</script>
+	</body>
+</html>

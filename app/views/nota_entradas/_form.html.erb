@@ -1,0 +1,49 @@
+<%= form_for(@nota_entrada) do |f| %>
+  <% if @nota_entrada.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nota_entrada.errors.count, "error") %> prohibited this nota_entrada from being saved:</h2>
+
+      <ul>
+      <% @nota_entrada.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :numero %><br />
+    <%= f.text_field :numero %>
+  </div>
+  <div class="field" style="float: &#x2190;">
+    <%= f.label :data_emissao %><br />
+    <%= f.date_select :data_emissao %>
+  </div>
+  <div class="field">
+    <%= f.label :data_entrada %><br />
+    <%= f.date_select :data_entrada %>
+  </div>
+  <div class="field">
+    <%= f.label :fornecedor %><br />
+    <%= f.number_field :fornecedor %>
+  </div>
+  <div class="field">
+    <%= f.label :valor_produtos %><br />
+    <%= f.text_field :valor_produtos %>
+  </div>
+  <div class="field">
+    <%= f.label :valor_despesas %><br />
+    <%= f.text_field :valor_despesas %>
+  </div>
+  <div class="field">
+    <%= f.label :valor_total %><br />
+    <%= f.text_field :valor_total %>
+  </div>
+  <div class="field">
+    <%= f.label :filial %><br />
+    <%= f.number_field :filial %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

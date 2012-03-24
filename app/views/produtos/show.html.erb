@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Descricao:</b>
+  <%= @produto.descricao %>
+</p>
+
+<p>
+  <b>Grupo:</b>
+  <%= @produto.grupo_id %>
+</p>
+
+<p>
+  <b>Subgrupo:</b>
+  <%= @produto.subgrupo_id %>
+</p>
+
+<p>
+  <b>Preco compra:</b>
+  <%= @produto.preco_compra %>
+</p>
+
+<p>
+  <b>Preco venda:</b>
+  <%= @produto.preco_venda %>
+</p>
+
+<p>
+  <b>Desativado:</b>
+  <%= @produto.desativado %>
+</p>
+
+
+<%= link_to 'Edit', edit_produto_path(@produto) %> |
+<%= link_to 'Back', produtos_path %>

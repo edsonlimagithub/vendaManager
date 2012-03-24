@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  produto: 1
+  nota: 1
+  quantidade: 1.5
+  valor_unitario: 1.5
+  quantidade: 1.5
+
+two:
+  produto: 1
+  nota: 1
+  quantidade: 1.5
+  valor_unitario: 1.5
+  quantidade: 1.5

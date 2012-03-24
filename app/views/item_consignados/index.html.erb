@@ -1,0 +1,33 @@
+<h1>Listing item_consignados</h1>
+
+<table>
+  <tr>
+    <th>Produto</th>
+    <th>Consignado</th>
+    <th>Quantidade produto</th>
+    <th>Quantidade kit</th>
+    <th>Kit</th>
+    <th>Cobrado</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @item_consignados.each do |item_consignado| %>
+  <tr>
+    <td><%= item_consignado.produto_id %></td>
+    <td><%= item_consignado.consignado_id %></td>
+    <td><%= item_consignado.quantidade_produto %></td>
+    <td><%= item_consignado.quantidade_kit %></td>
+    <td><%= item_consignado.kit_id %></td>
+    <td><%= item_consignado.cobrado %></td>
+    <td><%= link_to 'Show', item_consignado %></td>
+    <td><%= link_to 'Edit', edit_item_consignado_path(item_consignado) %></td>
+    <td><%= link_to 'Destroy', item_consignado, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Item consignado', new_item_consignado_path %>

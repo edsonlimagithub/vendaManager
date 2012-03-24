@@ -1,0 +1,29 @@
+<h1>Listing rota_items</h1>
+
+<table>
+  <tr>
+    <th>Rota</th>
+    <th>Item</th>
+    <th>Quantidade</th>
+    <th>Tipo item</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rota_items.each do |rota_item| %>
+  <tr>
+    <td><%= rota_item.rota_id %></td>
+    <td><%= rota_item.item_id %></td>
+    <td><%= rota_item.quantidade %></td>
+    <td><%= rota_item.tipo_item %></td>
+    <td><%= link_to 'Show', rota_item %></td>
+    <td><%= link_to 'Edit', edit_rota_item_path(rota_item) %></td>
+    <td><%= link_to 'Destroy', rota_item, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Rota item', new_rota_item_path %>

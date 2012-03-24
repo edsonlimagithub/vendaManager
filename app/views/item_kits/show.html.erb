@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Produto:</b>
+  <%= @item_kit.produto_id %>
+</p>
+
+<p>
+  <b>Kit:</b>
+  <%= @item_kit.kit_id %>
+</p>
+
+<p>
+  <b>Quantidade:</b>
+  <%= @item_kit.quantidade %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_kit_path(@item_kit) %> |
+<%= link_to 'Back', item_kits_path %>

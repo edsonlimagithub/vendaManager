@@ -1,0 +1,62 @@
+<html>
+<head>
+  <%= javascript_include_tag "jquery.tmpl.min"%>
+  <%= javascript_include_tag "jquery.tmplPlus.min"%>
+<script>
+	var retornar = function(){
+		window.location="/rota/new"
+	}
+	
+	$(function(){
+        $("#myTable").tablesorter(); 
+	}); 	
+	
+	var inserir_produto = function(id){
+		var quantidade = $('#quantidade_'+id).val();
+		$.post(
+			'/inserir_kit_rota',
+			{id:id},
+			function(){
+				
+			}
+		);
+	}
+	var markup = "<tr><td>${descricao}</td><td>${preco_venda}</td><td><a href='/rota/inserir_kit_rota?id=${id}'>Inserir</a></td></tr>";
+
+	$.template("template", markup);
+
+	var produtosDescricao = function(descricao){		
+		jQuery.getJSON(
+			"localiza_kit",
+			{descricao:descricao},
+			function(json){	
+					$( "#conteudo" ).empty();
+					$.tmpl("template", json).appendTo("#conteudo");	
+			}
+		);	
+	}
+
+	
+</script>
+
+</head>
+<body>
+<h3>Pesquisa Kits</h3>
+<a href='#' onClick='retornar()'>Fechar janela</a>
+
+<input type="text" onKeyUp="produtosDescricao(this.value);"/>
+
+
+<table id="myTable" class="tablesorter">
+	<thead>
+		<tr>
+			<td>Descricao</td>
+			<td>Preco</td>
+			<td>Função</td>
+		</tr>
+	<thead>
+	<tbody id="conteudo"></tbody>
+</table>
+
+</body>
+</html>

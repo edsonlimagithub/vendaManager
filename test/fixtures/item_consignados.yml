@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  produto_id: 1
+  consignado_id: 1
+  quantidade_produto: 1.5
+  quantidade_kit: 1.5
+  kit_id: 1
+  cobrado: 
+
+two:
+  produto_id: 1
+  consignado_id: 1
+  quantidade_produto: 1.5
+  quantidade_kit: 1.5
+  kit_id: 1
+  cobrado: 

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Produto:</b>
+  <%= @item_consignado.produto_id %>
+</p>
+
+<p>
+  <b>Consignado:</b>
+  <%= @item_consignado.consignado_id %>
+</p>
+
+<p>
+  <b>Quantidade produto:</b>
+  <%= @item_consignado.quantidade_produto %>
+</p>
+
+<p>
+  <b>Quantidade kit:</b>
+  <%= @item_consignado.quantidade_kit %>
+</p>
+
+<p>
+  <b>Kit:</b>
+  <%= @item_consignado.kit_id %>
+</p>
+
+<p>
+  <b>Cobrado:</b>
+  <%= @item_consignado.cobrado %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_consignado_path(@item_consignado) %> |
+<%= link_to 'Back', item_consignados_path %>
