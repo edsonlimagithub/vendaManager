@@ -1,4 +1,8 @@
 VendaManager::Application.routes.draw do
+  resources :empresas
+
+  resources :fornecedors
+
   resources :item_nota_entradas
 
   resources :nota_entradas

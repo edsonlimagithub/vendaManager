@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120318024337) do
+ActiveRecord::Schema.define(:version => 20120331164014) do
 
   create_table "cidades", :force => true do |t|
     t.string   "nome"
@@ -40,6 +40,33 @@ ActiveRecord::Schema.define(:version => 20120318024337) do
     t.datetime "data"
     t.datetime "proxima_cobranca"
     t.integer  "prazo_dias"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "empresas", :force => true do |t|
+    t.string   "razao"
+    t.string   "fantasia"
+    t.string   "telefone1"
+    t.string   "telefone2"
+    t.string   "logradouro"
+    t.string   "end_numero"
+    t.string   "complemento"
+    t.string   "cidade"
+    t.string   "estado"
+    t.string   "contato"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fornecedors", :force => true do |t|
+    t.string   "descricao"
+    t.string   "logradouro"
+    t.string   "end_numero"
+    t.string   "complemento"
+    t.string   "telefone1"
+    t.string   "telefone"
+    t.string   "cidade"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -107,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20120318024337) do
     t.binary   "desativado"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "rota", :force => true do |t|
@@ -140,6 +168,7 @@ ActiveRecord::Schema.define(:version => 20120318024337) do
     t.string   "tipo"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "vendedors", :force => true do |t|

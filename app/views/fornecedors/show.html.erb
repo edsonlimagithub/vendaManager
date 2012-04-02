@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Descricao:</b>
+  <%= @fornecedor.descricao %>
+</p>
+
+<p>
+  <b>Logradouro:</b>
+  <%= @fornecedor.logradouro %>
+</p>
+
+<p>
+  <b>End numero:</b>
+  <%= @fornecedor.end_numero %>
+</p>
+
+<p>
+  <b>Complemento:</b>
+  <%= @fornecedor.complemento %>
+</p>
+
+<p>
+  <b>Telefone1:</b>
+  <%= @fornecedor.telefone1 %>
+</p>
+
+<p>
+  <b>Telefone:</b>
+  <%= @fornecedor.telefone %>
+</p>
+
+<p>
+  <b>Cidade:</b>
+  <%= @fornecedor.cidade %>
+</p>
+
+
+<%= link_to 'Edit', edit_fornecedor_path(@fornecedor) %> |
+<%= link_to 'Back', fornecedors_path %>
