@@ -43,7 +43,9 @@ VendaManager::Application.routes.draw do
   resources :grupos
 
   resources :produtos
-
+  
+  match '/pesquisa_nota_entrada', :controller => 'produtos', :action => 'pesquisa_nota_entrada'
+  
   match '/pesquisa_descricao',   :controller => 'produtos', :action => 'pesquisa_item'
   match '/localiza_produto',    :controller => 'produtos', :action => 'localiza_produto'
   

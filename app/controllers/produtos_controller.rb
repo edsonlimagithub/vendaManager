@@ -95,5 +95,11 @@ class ProdutosController < ApplicationController
 		render :json => @produto.to_json
 	end
 	
+	def pesquisa_nota_entrada
+	  produto = nil
+    @produto = Produto.find(:all, :conditions => ["descricao LIKE ?", params[:name_startsWith]+ "%"])
+    render :json => @produto.to_json
+	end
+	
 	
 end
