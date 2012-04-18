@@ -7,6 +7,8 @@ gem 'jquery-rails'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
+gem 'therubyracer'
+gem 'capistrano'
 
 
 # Gems used only for assets and not required
