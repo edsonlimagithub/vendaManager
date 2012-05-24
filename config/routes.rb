@@ -44,13 +44,15 @@ VendaManager::Application.routes.draw do
 
   resources :produtos
   
-  match '/pesquisa_nota_entrada', :controller => 'produtos', :action => 'pesquisa_nota_entrada'
+  match '/pesquisa_nota_entrada', :controller => 'produtos', :action => 'pesquisa_produto_autocomplete'
+  match '/localiza_produto_id',   :controller => 'produtos', :action => 'localiza_produto_id'
+  match '/inseri_produto_nota',   :controller => 'nota_entradas', :action => 'inseri_produto_nota' 
   
-  match '/pesquisa_descricao',   :controller => 'produtos', :action => 'pesquisa_item'
-  match '/localiza_produto',    :controller => 'produtos', :action => 'localiza_produto'
+  match '/pesquisa_descricao',    :controller => 'produtos', :action => 'pesquisa_item'
+  match '/localiza_produto',      :controller => 'produtos', :action => 'localiza_produto'
   
-  match '/inserir_produto_kit', :controller => 'item_kits', :action => 'inserir_produto_kit'
-  match '/excluir_item_kit', :controller => 'item_kits', :action => 'excluir_item_kit'
+  match '/inserir_produto_kit',   :controller => 'item_kits', :action => 'inserir_produto_kit'
+  match '/excluir_item_kit',      :controller => 'item_kits', :action => 'excluir_item_kit'
 
   match '/kits/novo', :controller => 'kits', :action => 'novo'
   

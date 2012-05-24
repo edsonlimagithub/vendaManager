@@ -89,6 +89,15 @@ class ProdutosController < ApplicationController
 		#render :layout => false
 	end
 	
+	def pesquisa_produto
+	  render :layout => false
+	end
+	
+	def localiza_produto_id
+	  produto = Produto.find(params[:id]) rescue nil
+      render :json => produto
+	end
+	
 	def localiza_produto
 		@produto = nil
 		@produto = Produto.find(:all, :conditions => ["descricao LIKE ?", params[:descricao]+ "%"])
@@ -97,9 +106,26 @@ class ProdutosController < ApplicationController
 	
 	def pesquisa_nota_entrada
 	  produto = nil
-    @produto = Produto.find(:all, :conditions => ["descricao LIKE ?", params[:name_startsWith]+ "%"])
-    render :json => @produto.to_json
+    @produto = Produto.find(:all, :conditions => ["descricao LIKE ?", params[:descricao]+ "%"])
+    ActiveRecord::Base.include_root_in_json = false
+    produto_hash = []
+    @produto.each do |item|
+      produto_hash << {"id" => item.id, "label" => item.descricao}
+    end
+    render :json => produto_hash
 	end
+	
+	def pesquisa_produto_autocomplete
+    produto = nil
+    @produto = Produto.find(:all, :conditions => ["descricao LIKE ?", params[:term]+ "%"])
+    ActiveRecord::Base.include_root_in_json = false
+    produto_hash = []
+    @produto.each do |item|
+      produto_hash << {"id" => item.id, "label" => item.descricao}
+    end
+    render :json => produto_hash
+  end
+	
 	
 	
 end

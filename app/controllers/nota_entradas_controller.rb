@@ -80,4 +80,22 @@ class NotaEntradasController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def inserir_produto
+    quantidade = params[:quantidade]
+    produto = Produto.find(params[:id])
+  end
+  
+  def inseri_produto_nota
+    @item_nota_entrada = {:id => params[:id], :quantidade => params[:quantidade]}
+     puts session.inspect
+    if session[:nota_entrada_itens].nil? 
+      session[:nota_entrada_itens] = Array.new
+      session[:nota_entrada_itens] << @item_nota_entrada
+    else
+      session[:nota_entrada_itens] << @item_nota_entrada
+    end
+    produto_hash = session[:nota_entrada_itens]
+    render :json => produto_hash
+  end
 end

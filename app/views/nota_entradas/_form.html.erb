@@ -1,4 +1,5 @@
 <%= form_for(@nota_entrada) do |f| %>
+<%= csrf_meta_tags %>
   <% if @nota_entrada.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@nota_entrada.errors.count, "error") %> prohibited this nota_entrada from being saved:</h2>
@@ -35,7 +36,7 @@
   		<td>
   			<div class="field">
 			    <%= f.label :fornecedor %><br />
-			     <%= select("post", "Fornecedor", Fornecedor.all.collect {|p| [ p.descricao, p.id ] }, {:include_blank => 'Selecione um fornecedor'}) %>
+			    <%= select("post", "Fornecedor", Fornecedor.all.collect {|p| [ p.descricao, p.id ] }, {:include_blank => 'Selecione um fornecedor'}) %>
   			</div>
   		</td>
   		<td>
@@ -58,19 +59,42 @@
   		</td>
   	</tr>
   </table>
- <input type="text" size="10" id="codigo_produto"/>
- <input type="text" size="50" id="descricao_produto"/>
- <input type="button" value="Inserir" onclick="inseri_produto();"/>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+ <input type="text" size="10" id="codigo_produto" onblur="pesquisa_produto(this.value);"/>
+ <input type="text" size="50" id="descricao_produto" name="descricao_produto"  class="ui-autocomplete-input ui-corner-all" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"	/>
+ <input type="text" size="5" id="quantidade_produto" name="quantidade_produto"/>
+ <input type="button" value="Inserir" onclick="valida_produto();"/>
+ 
+<table id='items_table'>
+	<div id="div_items" name="div_items"> </div>
+</table>
+
+ 
 <% end %>
 
  <style>
 	.ui-autocomplete-loading { background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat; }
-	#city { width: 25em; }
-	</style>
-	<script>
+	#descricao_produto { width: 25em; }
+ </style>
+<script>
+
+	var pesquisa_produto = function(value){
+		var id = value;
+		$.get(
+			'/localiza_produto_id',
+			{id:id},
+			function(retorno){
+				if (retorno == null){
+					alert('Produto não encontrado!');
+					
+				}else{
+					$('#descricao_produto').val(retorno.descricao);
+					$('#quantidade_produto').focus();
+				}
+			}
+		);
+	}
+	
+//AUTO-COMPLETE
 	$(function() {
 		function log( message ) {
 			$( "<div/>" ).text( message ).prependTo( "#log" );
@@ -78,38 +102,40 @@
 		}
 
 		$( "#descricao_produto" ).autocomplete({
-			source: function( request, response ) {
-				$.ajax({
-					url: "/pesquisa_nota_entrada",
-					dataType: "jsonp",
-					data: {
-						featureClass: "P",
-						style: "full",
-						maxRows: 12,
-						name_startsWith: request.term
-					},
-					success: function( data ) {
-						response( $.map( data.geonames, function( item ) {
-							return {
-								label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-								value: item.name
-							}
-						}));
-					}
-				});
-			},
+			source: "/pesquisa_nota_entrada",
 			minLength: 2,
 			select: function( event, ui ) {
 				log( ui.item ?
-					"Selected: " + ui.item.label :
-					"Nothing selected, input was " + this.value);
-			},
-			open: function() {
-				$( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-			},
-			close: function() {
-				$( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+					"Selected: " + ui.item.value + " aka " + ui.item.id :
+					"Nothing selected, input was " + this.value );
+					$('#codigo_produto').val(ui.item.id);
+					$('#quantidade_produto').focus();
 			}
 		});
 	});
-	</script>
+
+//INSERIR PRODUTOS NA NOTA
+
+	var valida_produto = function(){
+		inseri_produto_nota($('#codigo_produto').val(), $('#quantidade_produto').val());
+	}
+	
+	var inseri_produto_nota = function(id, quantidade){
+		$.getJSON(
+			'/inseri_produto_nota',
+			{id:id, quantidade:quantidade},
+			function(json){	
+				dataType: 'json';
+				var item = json.list;
+				$("#div_items").html("<tr><td>" + 1 +"</td></tr>");
+				$.each(json, function(i, val){
+					alert(val.id);					
+				});
+				
+			}
+		);
+	}
+</script>
+	
+	
+
