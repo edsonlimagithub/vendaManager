@@ -65,7 +65,25 @@
  <input type="button" value="Inserir" onclick="valida_produto();"/>
  
 <table id='items_table'>
-	<div id="div_items" name="div_items"> </div>
+	<table>
+		<tr>
+			<td>Codigo</td>
+			<td>Descricão</td>
+			<td>Quantidade</td>
+			<td>Excluir</td>	
+		</tr>
+		<% if not session[:nota_entrada_itens].nil? %>
+			<% session[:nota_entrada_itens].each do |item|%>
+				<tr>
+					<td><%= item[:id] %></td>
+					<td><%= Produto.find(item[:id]).descricao %>
+					<td><%= item[:quantidade] %></td>
+					<td><a href="#" id="<%= item[:id]%>" onclick="exclui_item(this)">Excluir</a></td>
+				</tr>
+			<% end %>
+		<% end %>
+		
+	</table>
 </table>
 
  
@@ -76,7 +94,19 @@
 	#descricao_produto { width: 25em; }
  </style>
 <script>
-
+//EXCLUIR ITEM DA NOTA
+	var exclui_item = function(item){
+		item_id = item.id;
+		alert(item.id);
+		$.post(
+			'/exclui_produto_nota',
+			{item_id:item_id},
+			function(){
+				 window.location.reload();
+			}
+		);
+	}
+	
 	var pesquisa_produto = function(value){
 		var id = value;
 		$.get(
@@ -115,23 +145,16 @@
 	});
 
 //INSERIR PRODUTOS NA NOTA
-
 	var valida_produto = function(){
 		inseri_produto_nota($('#codigo_produto').val(), $('#quantidade_produto').val());
 	}
 	
 	var inseri_produto_nota = function(id, quantidade){
-		$.getJSON(
+		$.post(
 			'/inseri_produto_nota',
 			{id:id, quantidade:quantidade},
-			function(json){	
-				dataType: 'json';
-				var item = json.list;
-				$("#div_items").html("<tr><td>" + 1 +"</td></tr>");
-				$.each(json, function(i, val){
-					alert(val.id);					
-				});
-				
+			function(){
+				 window.location.reload();
 			}
 		);
 	}

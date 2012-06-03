@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331164014) do
+ActiveRecord::Schema.define(:version => 20120526200929) do
 
   create_table "cidades", :force => true do |t|
     t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "clientes", :force => true do |t|
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120331164014) do
     t.binary   "desativado"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "consignados", :force => true do |t|
@@ -42,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120331164014) do
     t.integer  "prazo_dias"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "empresas", :force => true do |t|
@@ -69,12 +72,14 @@ ActiveRecord::Schema.define(:version => 20120331164014) do
     t.string   "cidade"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "grupos", :force => true do |t|
     t.string   "descricao"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "item_consignados", :force => true do |t|
@@ -86,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20120331164014) do
     t.binary   "cobrado"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "item_kits", :force => true do |t|
@@ -94,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20120331164014) do
     t.float    "quantidade"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "item_nota_entradas", :force => true do |t|
@@ -103,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20120331164014) do
     t.float    "valor_unitario"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "kits", :force => true do |t|
@@ -110,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20120331164014) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "preco_venda"
+    t.integer  "empresa"
   end
 
   create_table "nota_entradas", :force => true do |t|
@@ -123,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20120331164014) do
     t.integer  "filial"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "produtos", :force => true do |t|
@@ -144,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20120331164014) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "data"
+    t.integer  "empresa"
   end
 
   create_table "rota_items", :force => true do |t|
@@ -153,12 +164,14 @@ ActiveRecord::Schema.define(:version => 20120331164014) do
     t.integer  "tipo_item"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "subgrupos", :force => true do |t|
     t.string   "descricao"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
   create_table "usuarios", :force => true do |t|
@@ -183,6 +196,7 @@ ActiveRecord::Schema.define(:version => 20120331164014) do
     t.string   "uf"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "empresa"
   end
 
 end

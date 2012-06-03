@@ -88,14 +88,23 @@ class NotaEntradasController < ApplicationController
   
   def inseri_produto_nota
     @item_nota_entrada = {:id => params[:id], :quantidade => params[:quantidade]}
-     puts session.inspect
     if session[:nota_entrada_itens].nil? 
       session[:nota_entrada_itens] = Array.new
       session[:nota_entrada_itens] << @item_nota_entrada
     else
       session[:nota_entrada_itens] << @item_nota_entrada
     end
-    produto_hash = session[:nota_entrada_itens]
-    render :json => produto_hash
+    render :nothing => true
   end
+  
+  def exclui_produto_nota
+    item_id = params[:item_id]
+    session[:nota_entrada_itens].each_with_index do |item, i|
+      if item[:id] == item_id
+        session[:nota_entrada_itens].delete_at(i)
+      end
+    end
+    render :nothing => true
+  end
+  
 end

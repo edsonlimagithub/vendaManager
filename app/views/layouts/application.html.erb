@@ -4,7 +4,6 @@
 	<title>VENDA MANAGER</title>
 	<%= stylesheet_link_tag "memu-0.1" %>
 	<%= stylesheet_link_tag "memu_atualizado" %>
-	<%= stylesheet_link_tag :application %>
 	<%= stylesheet_link_tag "jquery-ui"%>
 	
 	<%= javascript_include_tag :jquery %>
@@ -20,6 +19,7 @@
 		
 		<center><small>GERENCIADOR DE VENDAS EXTERNAS</small></center>
 		<br />
+		<%= session[:usuario].inspect %>
 		<%= render :partial => 'layouts/menu'%>
 		
 		<div class="principal"></div>

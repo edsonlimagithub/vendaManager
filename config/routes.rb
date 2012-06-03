@@ -46,7 +46,8 @@ VendaManager::Application.routes.draw do
   
   match '/pesquisa_nota_entrada', :controller => 'produtos', :action => 'pesquisa_produto_autocomplete'
   match '/localiza_produto_id',   :controller => 'produtos', :action => 'localiza_produto_id'
-  match '/inseri_produto_nota',   :controller => 'nota_entradas', :action => 'inseri_produto_nota' 
+  match '/inseri_produto_nota',   :controller => 'nota_entradas', :action => 'inseri_produto_nota'
+  match '/exclui_produto_nota', :to => 'nota_entradas#exclui_produto_nota' 
   
   match '/pesquisa_descricao',    :controller => 'produtos', :action => 'pesquisa_item'
   match '/localiza_produto',      :controller => 'produtos', :action => 'localiza_produto'
@@ -56,9 +57,9 @@ VendaManager::Application.routes.draw do
 
   match '/kits/novo', :controller => 'kits', :action => 'novo'
   
-  
-
-  root :controller => 'home', :action => 'index'
+  root :to => 'login#login'
+  match '/home', to: 'home#index'
+  match '/do_login', to: 'login#do_login'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
