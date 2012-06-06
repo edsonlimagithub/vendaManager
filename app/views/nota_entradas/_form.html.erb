@@ -63,6 +63,8 @@
  <input type="text" size="50" id="descricao_produto" name="descricao_produto"  class="ui-autocomplete-input ui-corner-all" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"	/>
  <input type="text" size="5" id="quantidade_produto" name="quantidade_produto"/>
  <input type="button" value="Inserir" onclick="valida_produto();"/>
+ <input type="button" value="Fechar Nota" onclik="valida_nota_entrada()"/>
+ <input type="submit" value="Cancelar Nota" />
  
 <table id='items_table'>
 	<table>
@@ -97,7 +99,6 @@
 //EXCLUIR ITEM DA NOTA
 	var exclui_item = function(item){
 		item_id = item.id;
-		alert(item.id);
 		$.post(
 			'/exclui_produto_nota',
 			{item_id:item_id},
