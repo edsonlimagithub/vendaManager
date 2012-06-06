@@ -54,5 +54,5 @@ production:
   encoding: unicode
   database: vendaManager_production
   pool: 5
-  username: vendaManager
-  password: vendamanager
+  username: postgres
+  password: postgres
