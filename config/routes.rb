@@ -58,6 +58,8 @@ VendaManager::Application.routes.draw do
   match '/kits/novo', :controller => 'kits', :action => 'novo'
   
   root :to => 'login#login'
+  #root :to => 'home#index'
+  #root :controller => 'home', :action => 'index'
   match '/home', to: 'home#index'
   match '/do_login', to: 'login#do_login'
 
