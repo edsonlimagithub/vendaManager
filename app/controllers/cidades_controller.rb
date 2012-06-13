@@ -2,7 +2,7 @@ class CidadesController < ApplicationController
   # GET /cidades
   # GET /cidades.json
   def index
-    @cidades = Cidade.all
+    @cidades = Cidade.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +41,7 @@ class CidadesController < ApplicationController
   # POST /cidades.json
   def create
     @cidade = Cidade.new(params[:cidade])
+    @cidade.empresa = session[:usuario].empresa
 
     respond_to do |format|
       if @cidade.save

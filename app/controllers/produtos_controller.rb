@@ -6,7 +6,7 @@ class ProdutosController < ApplicationController
   # GET /produtos
   # GET /produtos.json
   def index
-    @produtos = Produto.all
+    @produtos = Produto.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -45,6 +45,7 @@ class ProdutosController < ApplicationController
   # POST /produtos.json
   def create
     @produto = Produto.new(params[:produto])
+    @produto.empresa = session[:usuario].empresa
 
     respond_to do |format|
       if @produto.save
@@ -100,13 +101,13 @@ class ProdutosController < ApplicationController
 	
 	def localiza_produto
 		@produto = nil
-		@produto = Produto.find(:all, :conditions => ["descricao LIKE ?", params[:descricao]+ "%"])
+		@produto = Produto.find(:all, :conditions => ["descricao LIKE ? and empresa = ?", params[:descricao]+ "%", session[:usuario].empresa])
 		render :json => @produto.to_json
 	end
 	
 	def pesquisa_nota_entrada
 	  produto = nil
-    @produto = Produto.find(:all, :conditions => ["descricao LIKE ?", params[:descricao]+ "%"])
+    @produto = Produto.find(:all, :conditions => ["descricao LIKE ? and empresa = ?", params[:descricao]+ "%", session[:usuario].empresa])
     ActiveRecord::Base.include_root_in_json = false
     produto_hash = []
     @produto.each do |item|
@@ -117,7 +118,7 @@ class ProdutosController < ApplicationController
 	
 	def pesquisa_produto_autocomplete
     produto = nil
-    @produto = Produto.find(:all, :conditions => ["descricao LIKE ?", params[:term]+ "%"])
+    @produto = Produto.find(:all, :conditions => ["descricao LIKE ? and empresa = ?", params[:term]+ "%", session[:usuario].empresa])
     ActiveRecord::Base.include_root_in_json = false
     produto_hash = []
     @produto.each do |item|

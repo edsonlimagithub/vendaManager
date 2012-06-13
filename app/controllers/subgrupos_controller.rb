@@ -2,7 +2,7 @@ class SubgruposController < ApplicationController
   # GET /subgrupos
   # GET /subgrupos.json
   def index
-    @subgrupos = Subgrupo.all
+    @subgrupos = Subgrupo.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +41,7 @@ class SubgruposController < ApplicationController
   # POST /subgrupos.json
   def create
     @subgrupo = Subgrupo.new(params[:subgrupo])
-
+    @subgrupo.empresa = session[:usuario].empresa
     respond_to do |format|
       if @subgrupo.save
         format.html { redirect_to @subgrupo, notice: 'Subgrupo was successfully created.' }

@@ -2,7 +2,7 @@ class NotaEntradasController < ApplicationController
   # GET /nota_entradas
   # GET /nota_entradas.json
   def index
-    @nota_entradas = NotaEntrada.all
+    @nota_entradas = NotaEntrada.afind(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +41,7 @@ class NotaEntradasController < ApplicationController
   # POST /nota_entradas.json
   def create
     @nota_entrada = NotaEntrada.new(params[:nota_entrada])
-
+    @nota_entrada.empresa = session[:usuario].empresa
     respond_to do |format|
       if @nota_entrada.save
         format.html { redirect_to @nota_entrada, notice: 'Nota entrada was successfully created.' }

@@ -2,7 +2,7 @@ class FornecedorsController < ApplicationController
   # GET /fornecedors
   # GET /fornecedors.json
   def index
-    @fornecedors = Fornecedor.all
+    @fornecedors = Fornecedor.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +41,7 @@ class FornecedorsController < ApplicationController
   # POST /fornecedors.json
   def create
     @fornecedor = Fornecedor.new(params[:fornecedor])
-
+    @fornecedor.empresa = session[:usuario].empresa
     respond_to do |format|
       if @fornecedor.save
         format.html { redirect_to @fornecedor, notice: 'Fornecedor was successfully created.' }

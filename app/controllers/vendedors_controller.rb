@@ -2,7 +2,7 @@ class VendedorsController < ApplicationController
   # GET /vendedors
   # GET /vendedors.json
   def index
-    @vendedors = Vendedor.all
+    @vendedors = Vendedor.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +41,7 @@ class VendedorsController < ApplicationController
   # POST /vendedors.json
   def create
     @vendedor = Vendedor.new(params[:vendedor])
-
+    @vendedor.empresa = session[:usuario].empresa
     respond_to do |format|
       if @vendedor.save
         format.html { redirect_to @vendedor, notice: 'Vendedor was successfully created.' }

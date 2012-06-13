@@ -2,7 +2,7 @@ class GruposController < ApplicationController
   # GET /grupos
   # GET /grupos.json
   def index
-    @grupos = Grupo.all
+    @grupos = Grupo.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +41,7 @@ class GruposController < ApplicationController
   # POST /grupos.json
   def create
     @grupo = Grupo.new(params[:grupo])
-
+    @grupo.empresa = session[:usuario].empresa
     respond_to do |format|
       if @grupo.save
         format.html { redirect_to @grupo, notice: 'Grupo was successfully created.' }

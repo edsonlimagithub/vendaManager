@@ -5,7 +5,7 @@ class KitsController < ApplicationController
   # GET /kits
   # GET /kits.json
   def index
-    @kits = Kit.all
+    @kits = Kit.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,6 +44,7 @@ class KitsController < ApplicationController
   # POST /kits.json
   def create
     @kit = Kit.new(params[:kit])
+    @kit.empresa = session[:usuario].empresa
     respond_to do |format|
       if @kit.save
         format.html { redirect_to @kit, notice: 'Kit was successfully created.' }
@@ -92,6 +93,7 @@ class KitsController < ApplicationController
 		kit = Kit.new
     kit.descricao   = descricao
     kit.preco_venda = preco_venda
+    kit.empresa = session[:usuario].empresa
     id_kit = kit.save
 		
 		items = item.split("|")
@@ -114,7 +116,7 @@ class KitsController < ApplicationController
   
   def localiza_kit  
     @kit = nil
-    @kit = Kit.find(:all, :conditions => ["descricao LIKE ?", params[:descricao]+ "%"])
+    @kit = Kit.find(:all, :conditions => ["descricao LIKE ? and empresa = ?", params[:descricao]+ "%", session[:usuario].empresa])
     render :json => @kit.to_json
   end
   

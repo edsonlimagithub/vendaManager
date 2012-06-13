@@ -2,7 +2,7 @@ class ConsignadosController < ApplicationController
   # GET /consignados
   # GET /consignados.json
   def index
-    @consignados = Consignado.all
+    @consignados = Consignado.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +41,7 @@ class ConsignadosController < ApplicationController
   # POST /consignados.json
   def create
     @consignado = Consignado.new(params[:consignado])
-
+    @consignado.empresa = session[:usuario].empresa
     respond_to do |format|
       if @consignado.save
         format.html { redirect_to @consignado, notice: 'Consignado was successfully created.' }

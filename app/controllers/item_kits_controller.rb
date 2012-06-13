@@ -2,7 +2,7 @@ class ItemKitsController < ApplicationController
   # GET /item_kits
   # GET /item_kits.json
   def index
-    @item_kits = ItemKit.all
+    @item_kits = ItemKit.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +41,7 @@ class ItemKitsController < ApplicationController
   # POST /item_kits.json
   def create
     @item_kit = ItemKit.new(params[:item_kit])
-
+    @item_kit.empresa = session[:usuario].empresa
     respond_to do |format|
       if @item_kit.save
         format.html { redirect_to @item_kit, notice: 'Item kit was successfully created.' }

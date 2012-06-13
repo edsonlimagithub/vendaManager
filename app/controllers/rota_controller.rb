@@ -2,7 +2,7 @@ class RotaController < ApplicationController
   # GET /rota
   # GET /rota.json
   def index
-    @rota = Rotum.all
+    @rota = Rotum.afind(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,7 +41,7 @@ class RotaController < ApplicationController
   # POST /rota.json
   def create
     @rotum = Rotum.new(params[:rotum])
-
+    @rotum.empresa = session[:usuario].empresa
     respond_to do |format|
       if @rotum.save
         format.html { redirect_to @rotum, notice: 'Rotum was successfully created.' }
