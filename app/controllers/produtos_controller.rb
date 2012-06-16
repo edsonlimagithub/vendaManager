@@ -95,7 +95,7 @@ class ProdutosController < ApplicationController
 	end
 	
 	def localiza_produto_id
-	  produto = Produto.find(params[:id]) rescue nil
+	  produto = Produto.find(:all, :conditions => ["empresa = ?", params[:id]]) rescue nil
       render :json => produto
 	end
 	

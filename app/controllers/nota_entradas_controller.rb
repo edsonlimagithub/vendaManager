@@ -25,6 +25,7 @@ class NotaEntradasController < ApplicationController
   # GET /nota_entradas/new.json
   def new
     @nota_entrada = NotaEntrada.new
+    @fornecedores_nota_entrada = Fornecedor.find(:all, :conditions => [" empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -87,12 +88,28 @@ class NotaEntradasController < ApplicationController
   end
   
   def inseri_produto_nota
-    @item_nota_entrada = {:id => params[:id], :quantidade => params[:quantidade]}
+#data_emissao, data_entrada, fornecedor_id, nota_numero, valor_despesas, valor_produtos
+    session[:nota_entrada_cabecalho] ||= Hash.new
+    session[:nota_entrada_cabecalho][:data_emissao]   = params[:data_emissao]
+    session[:nota_entrada_cabecalho][:data_entrada]   = params[:data_entrada]
+    session[:nota_entrada_cabecalho][:fornecedor_id]  = params[:fornecedor_id]
+    session[:nota_entrada_cabecalho][:nota_numero]    = params[:nota_numero]
+    session[:nota_entrada_cabecalho][:valor_despesas] = params[:valor_despesas]
+    session[:nota_entrada_cabecalho][:valor_produtos] = params[:valor_produtos]
+    puts "Valores da sessao: #{session[:nota_entrada_cabecalho]}"
+    item_nota_entrada = {:id => params[:id], :quantidade => params[:quantidade], :valor_unitario => params[:valor_unitario]}
     if session[:nota_entrada_itens].nil? 
       session[:nota_entrada_itens] = Array.new
-      session[:nota_entrada_itens] << @item_nota_entrada
+      session[:nota_entrada_itens] << item_nota_entrada
     else
-      session[:nota_entrada_itens] << @item_nota_entrada
+      session[:nota_entrada_itens].each do |e|
+        if e[:id] == params[:id]
+          e[:quantidade] = params[:quantidade]
+          e[:valor_unitario] = params[:valor_unitario]
+        else
+          session[:nota_entrada_itens] << item_nota_entrada
+        end
+      end
     end
     render :nothing => true
   end
@@ -105,6 +122,10 @@ class NotaEntradasController < ApplicationController
       end
     end
     render :nothing => true
+  end
+  
+  def fecha_nota_entrada
+    abort("Fechando nota #{session[:nota_entrada_itens]}")
   end
   
 end
