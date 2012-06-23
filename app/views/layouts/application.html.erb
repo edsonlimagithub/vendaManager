@@ -1,10 +1,14 @@
+#encoding: utf-8
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 	<title>VENDA MANAGER</title>
+
 	<%= stylesheet_link_tag "memu-0.1" %>
 	<%= stylesheet_link_tag "memu_atualizado" %>
 	<%= stylesheet_link_tag "jquery-ui"%>
+	<%= stylesheet_link_tag "style" %>
 	
 	<%= javascript_include_tag :jquery %>
 	<%= javascript_include_tag :application %>
@@ -22,8 +26,9 @@
 		<%= session[:usuario].inspect %>
 		<%= render :partial => 'layouts/menu'%>
 		
-		<div class="principal"></div>
+		<div class="principal">
 			<%= yield %>
+		</div>
 		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 		
 		<script type="text/javascript">

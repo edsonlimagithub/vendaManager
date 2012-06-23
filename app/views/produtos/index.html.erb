@@ -8,6 +8,8 @@
     <th>Preco compra</th>
     <th>Preco venda</th>
     <th>Desativado</th>
+    <th>Estoque Interno</th>
+    <th>Estoque Externo</th>
     <th></th>
     <th></th>
     <th></th>
@@ -21,6 +23,8 @@
     <td><%= produto.preco_compra %></td>
     <td><%= produto.preco_venda %></td>
     <td><%= produto.desativado %></td>
+    <td><%= produto.estoque_interno %></td>
+    <td></td>
     <td><%= link_to 'Exibir', produto %></td>
     <td><%= link_to 'Editar', edit_produto_path(produto) %></td>
     <td><%= link_to 'Apagar', produto, confirm: 'Deseja realmente apagar?', method: :delete %></td>

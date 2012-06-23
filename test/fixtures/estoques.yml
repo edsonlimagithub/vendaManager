@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  empresa: 1
+  deposito: 1.5
+  externo: 1.5
+
+two:
+  empresa: 1
+  deposito: 1.5
+  externo: 1.5

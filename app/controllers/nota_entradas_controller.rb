@@ -125,7 +125,31 @@ class NotaEntradasController < ApplicationController
   end
   
   def fecha_nota_entrada
-    abort("Fechando nota #{session[:nota_entrada_itens]}")
+    nota_entrada = NotaEntrada.new
+    nota_entrada.numero         = session[:nota_entrada_cabecalho][:nota_numero]
+    nota_entrada.data_emissao   = session[:nota_entrada_cabecalho][:data_emissao]
+    nota_entrada.data_entrada   = session[:nota_entrada_cabecalho][:data_entrada]
+    nota_entrada.fornecedor     = session[:nota_entrada_cabecalho][:fornecedor_id]
+    nota_entrada.valor_produtos = session[:nota_entrada_cabecalho][:valor_produtos]
+    nota_entrada.valor_despesas = session[:nota_entrada_cabecalho][:valor_despesas]
+    nota_entrada.empresa = session[:usuario].empresa
+    #nota_entrada.save
+    session[:nota_entrada_itens].each do |item|
+      item_nota = ItemNotaEntrada.new
+      item_nota.produto = item[:id]
+      item_nota.nota = nota_entrada.id
+      item_nota.quantidade = item[:quantidade]
+      item_nota.valor_unitario = item[:valor_unitario]
+      if item_nota.save
+        produto = Produto.find(item_nota.produto)
+        if produto.estoque_interno.nil?
+          produto.estoque_interno = 0
+        end
+        produto.estoque_interno = produto.estoque_interno  + item[:quantidade].to_f
+        produto.save
+      end
+    end
+    flash[:notice] = "Nota finalizada com sucesso!"
   end
   
 end

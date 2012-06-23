@@ -180,7 +180,6 @@
 //ATUALIZA TOTAL DO ITEM QUE ESTÁ SENDO INSERIDO
 
 	var atualiza_total_item = function(){
-		alert("aqui");
 		$("#valor_total_item").val($("#quantidade_produto").val() * $("#valor_unitario").val())
 	}
 
@@ -224,6 +223,7 @@
 	}
 	
 	var fecha_nota_entrada = function(){
+		
 		$.post(
 			'/fecha_nota_entrada',	
 			{},

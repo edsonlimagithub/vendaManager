@@ -8,12 +8,13 @@ body {
 		pre { font-size: 0.6em; }
 		
 		.menu-container {
-			margin: 0 auto;
+/*			margin: 0 auto;*/
 			padding: 0;
 			height: 24px;
 			width: 721px;
 			background: #fff;
 			border: 1px solid #222;
+			margin: 0px 10px;
 		}
 		
 		.container {
