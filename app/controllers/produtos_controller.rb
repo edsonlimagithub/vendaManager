@@ -7,7 +7,7 @@ class ProdutosController < ApplicationController
   # GET /produtos.json
   def index
     @produtos = Produto.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @produtos }
