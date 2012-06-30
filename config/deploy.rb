@@ -1,4 +1,5 @@
 set :application, "vendaManager"
+set :rails_env, "development"
 set :repository,  "git@github.com:edsonlimagithub/vendaManager.git"
 set :scm, "git"
 set :deploy_to, "/var/www/vendaManager"
