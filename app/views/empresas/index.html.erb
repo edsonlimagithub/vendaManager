@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+  	<th>Id</th>
     <th>Razao</th>
     <th>Fantasia</th>
     <th>Telefone1</th>
@@ -19,6 +20,7 @@
 
 <% @empresas.each do |empresa| %>
   <tr>
+  	<td><%= empresa.id %></td>
     <td><%= empresa.razao %></td>
     <td><%= empresa.fantasia %></td>
     <td><%= empresa.telefone1 %></td>
