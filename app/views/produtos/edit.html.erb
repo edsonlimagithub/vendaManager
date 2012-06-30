@@ -35,7 +35,7 @@
   </div>
   <div class="field">
     <%= f.label :desativado %><br />
-    <%= f.text_field :desativado %>
+    <%= f.radio_button :desativado, true %>
   </div>
   <div class="actions">
     <%= f.submit %>
@@ -44,3 +44,12 @@
 
 <%= link_to 'Show', @produto %> |
 <%= link_to 'Back', produtos_path %>
+
+<script>
+	$("#produto_preco_compra").add("#produto_preco_venda").priceFormat({
+		prefix: "R$",
+		centsSeparator: ",",
+		thousandsSeparator: "."
+	});	
+	
+</script>

@@ -2,10 +2,12 @@
 
 <table>
   <tr>
+  	<th>Id</th>
     <th>Nome</th>
     <th>Login</th>
     <th>Senha</th>
     <th>Tipo</th>
+    <th>Empresa</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,10 +15,12 @@
 
 <% @usuarios.each do |usuario| %>
   <tr>
+  	<td><%= usuario.id %></td>
     <td><%= usuario.nome %></td>
     <td><%= usuario.login %></td>
     <td><%= usuario.senha %></td>
     <td><%= usuario.tipo %></td>
+    <td><%= Empresa.find(usuario.empresa).razao %></td>
     <td><%= link_to 'Show', usuario %></td>
     <td><%= link_to 'Edit', edit_usuario_path(usuario) %></td>
     <td><%= link_to 'Destroy', usuario, confirm: 'Are you sure?', method: :delete %></td>

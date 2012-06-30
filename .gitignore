@@ -1,2 +1,6 @@
 *.log
-database.yml
+config/database.yml
+config/environment.rb
+*.cache
+tmp/**/*
+.bundle
