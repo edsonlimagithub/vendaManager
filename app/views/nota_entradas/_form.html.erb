@@ -128,14 +128,14 @@
 	
 	var pesquisa_produto = function(value){
 		var id = value;
-		$.get(
+		$.getJSON(
 			'/localiza_produto_id',
 			{id:id},
-			function(retorno){
-				if (retorno == null){
+			function(json){
+				if (json == null || json == ""){
 					alert('Produto não encontrado!');
 				}else{
-					$('#descricao_produto').val(retorno.descricao);
+					$('#descricao_produto').val(json[0].descricao);
 					$('#quantidade_produto').focus();
 				}
 			}
