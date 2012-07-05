@@ -1,4 +1,5 @@
 *.log
+log/*
 config/database.yml
 config/environment.rb
 *.cache
