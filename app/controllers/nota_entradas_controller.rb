@@ -2,7 +2,7 @@ class NotaEntradasController < ApplicationController
   # GET /nota_entradas
   # GET /nota_entradas.json
   def index
-    @nota_entradas = NotaEntrada.afind(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
+    @nota_entradas = NotaEntrada.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb

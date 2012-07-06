@@ -67,7 +67,7 @@
  			<th>Valor Unitário</th>
  			<th>Total</th>
  			<th></th>
- 		</tr>
+ 		</tr>	
  	<tr>
 		 <td><input type="text" size="10" id="codigo_produto" onblur="pesquisa_produto(this.value);"/></td>
 		 <td><input type="text" size="50" id="descricao_produto" name="descricao_produto"  class="ui-autocomplete-input ui-corner-all" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true"	/></td>
@@ -175,12 +175,28 @@
 					$('#quantidade_produto').focus();
 			}
 		});
+		
+//FORMATAÇÃO DOS VALORES MONETÁRIOS
+		$("#nota_entrada_valor_produtos").add("#nota_entrada_valor_despesas").add("#nota_entrada_valor_total").add("#valor_unitario").add("#valor_total_item").priceFormat({
+			prefix: "R$",
+			centsSeparator: ",",
+			thousandsSeparator: "."
+		});	
+//FORMATAÇÃO: NÚMERO DA NOTA E QUANTIDADES
+
+		$("#nota_entrada_numero").add("#quantidade_produto").priceFormat({
+			prefix:"",
+			centsSeparator:"",
+			thousandsSeparator:""
+		});			
 	});
 	
 //ATUALIZA TOTAL DO ITEM QUE ESTÁ SENDO INSERIDO
 
 	var atualiza_total_item = function(){
-		$("#valor_total_item").val($("#quantidade_produto").val() * $("#valor_unitario").val())
+		var valor_unitario = $("#valor_unitario").val().replace("R$","");
+		valor_unitario = valor_unitario.replace(",",".");
+		$("#valor_total_item").val($("#quantidade_produto").val() * valor_unitario);
 	}
 
 //INSERIR PRODUTOS NA NOTA
