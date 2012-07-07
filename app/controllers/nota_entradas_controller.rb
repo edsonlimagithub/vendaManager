@@ -13,7 +13,7 @@ class NotaEntradasController < ApplicationController
   # GET /nota_entradas/1
   # GET /nota_entradas/1.json
   def show
-    @nota_entrada = NotaEntrada.find(params[:id])
+    @nota_entrada = NotaEntrada.find(:last, :conditions => ["id = ? and empresa = ?", params[:id], session[:usuario].empresa])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -125,6 +125,7 @@ class NotaEntradasController < ApplicationController
   end
   
   def fecha_nota_entrada
+    retorno =  "true"
     nota_entrada = NotaEntrada.new
     nota_entrada.numero         = session[:nota_entrada_cabecalho][:nota_numero]
     nota_entrada.data_emissao   = session[:nota_entrada_cabecalho][:data_emissao]
@@ -133,23 +134,29 @@ class NotaEntradasController < ApplicationController
     nota_entrada.valor_produtos = session[:nota_entrada_cabecalho][:valor_produtos]
     nota_entrada.valor_despesas = session[:nota_entrada_cabecalho][:valor_despesas]
     nota_entrada.empresa = session[:usuario].empresa
-    #nota_entrada.save
-    session[:nota_entrada_itens].each do |item|
-      item_nota = ItemNotaEntrada.new
-      item_nota.produto = item[:id]
-      item_nota.nota = nota_entrada.id
-      item_nota.quantidade = item[:quantidade]
-      item_nota.valor_unitario = item[:valor_unitario]
-      if item_nota.save
-        produto = Produto.find(item_nota.produto)
-        if produto.estoque_interno.nil?
-          produto.estoque_interno = 0
+    nota_entrada.save
+    begin
+      session[:nota_entrada_itens].each do |item|
+        item_nota = ItemNotaEntrada.new
+        item_nota.produto = item[:id]
+        item_nota.nota = nota_entrada.id
+        item_nota.quantidade = item[:quantidade]
+        item_nota.valor_unitario = item[:valor_unitario]
+        if item_nota.save
+          produto = Produto.find(item_nota.produto)
+          if produto.estoque_interno.nil?
+            produto.estoque_interno = 0
+          end
+          produto.estoque_interno = produto.estoque_interno  + item[:quantidade].to_f
+          produto.save
         end
-        produto.estoque_interno = produto.estoque_interno  + item[:quantidade].to_f
-        produto.save
       end
-    end
-    flash[:notice] = "Nota finalizada com sucesso!"
+      session[:nota_entrada_itens] = nil
+      session[:nota_entrada_cabecalho] = nil
+    rescue => e
+      retorno = e
+    end 
+    render "nota_entradas/show/#{nota_entrada.id}"
   end
   
 end

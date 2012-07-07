@@ -243,7 +243,15 @@
 		$.post(
 			'/fecha_nota_entrada',	
 			{},
-			function(){}
+			function(retorno){
+				if( retorno == "true" ){
+					alert("nota finalizada com sucesso");
+					window.location.reload();
+				}else{
+					alert(retorno);
+				}
+				
+			}
 		);
 	}	
 </script>
