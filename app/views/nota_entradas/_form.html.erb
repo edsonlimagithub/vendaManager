@@ -212,7 +212,6 @@
 		var valor_produtos = $("#nota_entrada_valor_produtos").val();
 		var valor_despesas = $("#nota_entrada_valor_despesas").val();
 		var valor_total    = $("#nota_entrada_valor_total").val();
-		
 		$.post(
 			'/inseri_produto_nota',
 			{
@@ -244,13 +243,8 @@
 			'/fecha_nota_entrada',	
 			{},
 			function(retorno){
-				if( retorno == "true" ){
-					alert("nota finalizada com sucesso");
-					window.location.reload();
-				}else{
-					alert(retorno);
-				}
-				
+				alert("nota finalizada com sucesso");
+				window.location.reload(true);
 			}
 		);
 	}	

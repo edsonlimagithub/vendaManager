@@ -4,3 +4,7 @@
     padding: 0;
     width: 721px;
 }
+
+.formInputText{
+	text-transform: uppercase;
+}

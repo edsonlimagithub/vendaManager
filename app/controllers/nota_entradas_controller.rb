@@ -13,7 +13,7 @@ class NotaEntradasController < ApplicationController
   # GET /nota_entradas/1
   # GET /nota_entradas/1.json
   def show
-    @nota_entrada = NotaEntrada.find(:last, :conditions => ["id = ? and empresa = ?", params[:id], session[:usuario].empresa])
+    @nota_entrada = NotaEntrada.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -125,7 +125,7 @@ class NotaEntradasController < ApplicationController
   end
   
   def fecha_nota_entrada
-    retorno =  "true"
+    retorno =  true
     nota_entrada = NotaEntrada.new
     nota_entrada.numero         = session[:nota_entrada_cabecalho][:nota_numero]
     nota_entrada.data_emissao   = session[:nota_entrada_cabecalho][:data_emissao]
@@ -134,7 +134,7 @@ class NotaEntradasController < ApplicationController
     nota_entrada.valor_produtos = session[:nota_entrada_cabecalho][:valor_produtos]
     nota_entrada.valor_despesas = session[:nota_entrada_cabecalho][:valor_despesas]
     nota_entrada.empresa = session[:usuario].empresa
-    nota_entrada.save
+    #nota_entrada.save
     begin
       session[:nota_entrada_itens].each do |item|
         item_nota = ItemNotaEntrada.new
@@ -156,7 +156,7 @@ class NotaEntradasController < ApplicationController
     rescue => e
       retorno = e
     end 
-    render "nota_entradas/show/#{nota_entrada.id}"
+    flash[:notice] = "Nota finalizada com sucesso!"
   end
   
 end
