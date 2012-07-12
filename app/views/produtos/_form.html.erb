@@ -1,4 +1,4 @@
-<%= form_for(@produto) do |f| %>
+<%= form_for @produto, :class => 'forms_c' do |f| %>
   <% if @produto.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@produto.errors.count, "error") %> prohibited this produto from being saved:</h2>
@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :descricao %><br />
-    <%= f.text_field :descricao, :class => 'formInputText' %>
+    <%= f.text_field :descricao %>
   </div>
   <div class="field">
     
