@@ -29,7 +29,7 @@
 				<% produto = Produto.find(item[:id]) %>
 			<tr>
 				<td><%= produto.descricao %></td>
-				<td><input type="text" size="3" id="quantidade_<%= produto.id %>"></td>
+				<td><input type="text" size="3" id="quantidade_<%= produto.id %>" name="quantidade_<%= produto.id %>"></td>
 				<td><a href="/excluir_item_kit?id=<%= produto.id %>">excluir</a></td>
 			</tr>
 			<% end %>
@@ -37,6 +37,10 @@
 		<% end %>
 		
 	</div>	
+
+<% end %>
+
+
 <script>
 
 	var validaKit = function(){
@@ -74,13 +78,16 @@
 	}
 	
 	var enviaKit = function(items){
-		var descricao   = $('#descricao').val();
-		var preco_venda = $('#preco_venda').val();
-		$.post(
-			'/kits/novo',
-			{items:items, descricao:descricao, preco_venda:preco_venda},
-			function(){}		
-		);		
+		// var descricao   = $('#descricao').val();
+		// var preco_venda = $('#preco_venda').val();
+		// var csrf_token   = $('#csrf_token').val();
+// 		
+		// alert(csrf_token);
+		// $.post(
+			// '/kits/novo',
+			// {items:items, descricao:descricao, preco_venda:preco_venda, csrf_token:csrf_token},
+			// function(){}		
+		// );		
+		$("#new_kit").submit();
 	}
 </script>
-<% end %>

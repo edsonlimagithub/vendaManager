@@ -44,6 +44,8 @@ VendaManager::Application.routes.draw do
 
   resources :produtos
   
+  resources :usuarios
+  
   match '/pesquisa_nota_entrada', :controller => 'produtos', :action => 'pesquisa_produto_autocomplete'
   match '/localiza_produto_id',   :controller => 'produtos', :action => 'localiza_produto_id'
   match '/inseri_produto_nota',   :controller => 'nota_entradas', :action => 'inseri_produto_nota'

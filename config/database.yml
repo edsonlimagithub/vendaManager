@@ -18,8 +18,8 @@ development:
   encoding: unicode
   database: vendaManager_development
   pool: 5
-  username: postgres
-  password: postgres  
+  username: vendamanager
+  password: vendamanager
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -45,7 +45,7 @@ test:
   encoding: unicode
   database: vendaManager_test
   pool: 5
-  username: vendaManager
+  username: vendamanager
   password: vendamanager
 
 production:
