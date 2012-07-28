@@ -5,3 +5,4 @@ config/environment.rb
 *.cache
 tmp/**/*
 .bundle
+.rvmrc
