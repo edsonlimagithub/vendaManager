@@ -44,7 +44,7 @@ class KitsController < ApplicationController
   
   def create
     params.each do |parametro|
-      if parametro
+      
     end
     abort("#{params.inspect}")
     session[:items] = nil  
