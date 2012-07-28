@@ -41,19 +41,35 @@ class KitsController < ApplicationController
   end
 
   # POST /kits
-  # POST /kits.json
+  
   def create
-    @kit = Kit.new(params[:kit])
-    @kit.empresa = session[:usuario].empresa
-    respond_to do |format|
-      if @kit.save
-        format.html { redirect_to @kit, notice: 'Kit was successfully created.' }
-        format.json { render json: @kit, status: :created, location: @kit }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @kit.errors, status: :unprocessable_entity }
-      end
+    params.each do |parametro|
+      if parametro
     end
+    abort("#{params.inspect}")
+    session[:items] = nil  
+    item = params[:items]
+    descricao = params[:descricao]
+    preco_venda = params[:preco_venda]
+    
+    kit = Kit.new
+    kit.descricao   = descricao
+    kit.preco_venda = preco_venda
+    kit.empresa = session[:usuario].empresa
+    id_kit = kit.save
+    
+    items = item.split("|")
+    items.each do |e|
+      campo = e.split("_") 
+      campo[0] #id
+      campo[1] #quantidade
+      itemKit = ItemKit.new
+      itemKit.produto_id = campo[0]
+      itemKit.quantidade = campo[1]
+      itemKit.kit_id     = id_kit
+      itemKit.save
+    end
+    render :nothing => true
   end
 
   # PUT /kits/1
@@ -85,29 +101,7 @@ class KitsController < ApplicationController
   end
 
 	def novo
-	  session[:items] = nil  
-		item = params[:items]
-		descricao = params[:descricao]
-		preco_venda = params[:preco_venda]
-		
-		kit = Kit.new
-    kit.descricao   = descricao
-    kit.preco_venda = preco_venda
-    kit.empresa = session[:usuario].empresa
-    id_kit = kit.save
-		
-		items = item.split("|")
-		items.each do |e|
-		  campo = e.split("_") 
-		  campo[0] #id
-		  campo[1] #quantidade
-		  itemKit = ItemKit.new
-		  itemKit.produto_id = campo[0]
-		  itemKit.quantidade = campo[1]
-		  itemKit.kit_id     = id_kit
-		  itemKit.save
-		end
-		render :nothing => true
+	  
 	end
 	
 	def pesquisa_kit
