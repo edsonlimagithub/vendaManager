@@ -46,8 +46,7 @@ class KitsController < ApplicationController
     params.each do |parametro|
       
     end
-    abort("#{params.inspect}")
-    session[:items] = nil  
+    #session[:items] = nil  
     item = params[:items]
     descricao = params[:descricao]
     preco_venda = params[:preco_venda]

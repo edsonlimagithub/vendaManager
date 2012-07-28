@@ -96,7 +96,6 @@ class NotaEntradasController < ApplicationController
     session[:nota_entrada_cabecalho][:nota_numero]    = params[:nota_numero]
     session[:nota_entrada_cabecalho][:valor_despesas] = params[:valor_despesas]
     session[:nota_entrada_cabecalho][:valor_produtos] = params[:valor_produtos]
-    puts "Valores da sessao: #{session[:nota_entrada_cabecalho]}"
     item_nota_entrada = {:id => params[:id], :quantidade => params[:quantidade], :valor_unitario => params[:valor_unitario]}
     if session[:nota_entrada_itens].nil? 
       session[:nota_entrada_itens] = Array.new
