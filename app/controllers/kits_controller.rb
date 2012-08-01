@@ -43,31 +43,23 @@ class KitsController < ApplicationController
   # POST /kits
   
   def create
-    params.each do |parametro|
-      
-    end
-    #session[:items] = nil  
-    item = params[:items]
-    descricao = params[:descricao]
-    preco_venda = params[:preco_venda]
-    
     kit = Kit.new
-    kit.descricao   = descricao
-    kit.preco_venda = preco_venda
+    kit.descricao   = params[:kit][:descricao]
+    kit.preco_venda = params[:kit][:preco_venda]
     kit.empresa = session[:usuario].empresa
-    id_kit = kit.save
-    
-    items = item.split("|")
-    items.each do |e|
-      campo = e.split("_") 
-      campo[0] #id
-      campo[1] #quantidade
-      itemKit = ItemKit.new
-      itemKit.produto_id = campo[0]
-      itemKit.quantidade = campo[1]
-      itemKit.kit_id     = id_kit
-      itemKit.save
+    kit.save
+    params.each do |key, value|
+      if key.include? "quantidade"
+        campo = key.split('_')
+        itemKit = ItemKit.new
+        itemKit.empresa = session[:usuario].empresa
+        itemKit.quantidade = value
+        itemKit.produto_id = campo[1]
+        itemKit.kit_id = kit.id
+        itemKit.save
+      end
     end
+    session[:items] = nil
     render :nothing => true
   end
 

@@ -46,6 +46,9 @@ class ProdutosController < ApplicationController
   def create
     @produto = Produto.new(params[:produto])
     @produto.empresa = session[:usuario].empresa
+    
+    params[:produto][:preco_compra] = converte_valor_banco params[:produto][:preco_compra]
+    params[:produto][:preco_venda]  = converte_valor_banco params[:produto][:preco_venda]
 
     respond_to do |format|
       if @produto.save
@@ -62,6 +65,9 @@ class ProdutosController < ApplicationController
   # PUT /produtos/1.json
   def update
     @produto = Produto.find(params[:id])
+    
+    params[:produto][:preco_compra] = converte_valor_banco params[:produto][:preco_compra]
+    params[:produto][:preco_venda]  = converte_valor_banco params[:produto][:preco_venda]
 
     respond_to do |format|
       if @produto.update_attributes(params[:produto])
@@ -127,6 +133,13 @@ class ProdutosController < ApplicationController
     render :json => produto_hash
   end
 	
+private 
+  
+  def converte_valor_banco valor
+    valor.slice! "R$"
+    valor[","] = "." 
+    valor   
+  end 
 	
 	
 end

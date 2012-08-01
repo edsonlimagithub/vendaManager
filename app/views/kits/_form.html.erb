@@ -10,19 +10,10 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :descricao, :name => 'descricao' %><br />
-    <%= f.text_field :descricao%>
-    <%= f.label :Valor, :name => 'valor' %><br />
-    <input type="text" id="preco_venda" size="5">
-    
-  </div>
   <div>
-    <input type="button" value="Criar Kit" onClick="validaKit();">
 	<a href="/pesquisa_descricao">Inserir Item</a>
   </div>
-	<div>
+	<div style="background-color: #B6B6B6	">
 		<% if not session[:items].nil? %>
 		<table><tr><th>Descricao</th><th>Quantidade</th><th>Excluir</th>
 			<% session[:items].each do |item| %>
@@ -37,6 +28,13 @@
 		<% end %>
 		
 	</div>	
+	<div class="field">
+	    <%= f.label :descricao %><br />
+	    <%= f.text_field :descricao %><br />
+	    <%= f.label :Valor %><br />
+	    <%= f.text_field :preco_venda, :size => 5%>
+	    <input type="button" value="Criar Kit" onClick="validaKit();">
+ 	</div>
 
 <% end %>
 
