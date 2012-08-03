@@ -29,7 +29,9 @@
   <b>Desativado:</b>
   <%= @produto.desativado %>
 </p>
-
+<p>
+  <%= @produto.brinde ? "verdadeiro": "" %>
+</p>
 
 <%= link_to 'Edit', edit_produto_path(@produto) %> |
 <%= link_to 'Back', produtos_path %>

@@ -35,7 +35,11 @@
   </div>
   <div class="field">
     <%= f.label :desativado %><br />
-    <%= f.radio_button :desativado, true %>
+    <%= f.check_box :desativado %>
+  </div>
+  <div class="field">
+    <%= f.label :brinde? %><br />
+    <%= f.check_box :brinde %>
   </div>
   <div class="actions">
     <%= f.submit %>

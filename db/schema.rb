@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711190856) do
+ActiveRecord::Schema.define(:version => 20120803003658) do
 
   create_table "cidades", :force => true do |t|
     t.string   "nome"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20120711190856) do
     t.datetime "updated_at"
     t.integer  "empresa"
     t.float    "estoque_interno"
+    t.boolean  "brinde"
   end
 
   create_table "rota", :force => true do |t|

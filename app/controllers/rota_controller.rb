@@ -25,6 +25,8 @@ class RotaController < ApplicationController
   # GET /rota/new.json
   def new
     @rotum = Rotum.new
+    @produtos = Produto.find(:all, :conditions => ["empresa = ? and brinde <> ?", session[:usuario].empresa, "t"])
+    @brindes  = Produto.find(:all, :conditions => ["empresa = ? and brinde = ?", session[:usuario].empresa, "t"])
 
     respond_to do |format|
       format.html # new.html.erb
