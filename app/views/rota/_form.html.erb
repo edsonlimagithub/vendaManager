@@ -1,10 +1,79 @@
+<%= form_for(@rotum) do |f| %>
+  <% if @rotum.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@rotum.errors.count, "error") %> prohibited this rotum from being saved:</h>
 
-<% @produtos.each do |p| %>
-	<%= p.descricao %><br />
-<% end %><br /><br />
-Brindes<br />
-<% @brindes.each do |b| %>
-	<%= b.descricao %><br />
+      <ul>
+      <% @rotum.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <div>
+ 	Cidade<br />
+ 	<%= select("post", "cidade", Cidade.all.collect {|p| [ p.nome, p.id ] }, {:include_blank => 'Selecione a cidade'}) %>
+ </div>
+ <div>
+ 	Vendedor<br />
+ 	<%= select("post", "vendedor", Vendedor.all.collect {|p| [ p.nome, p.id ] }, {:include_blank => 'Selecione um vendedor'}) %>
+ </div>
+ <div>
+ 	Observacao<br />
+ 	<textarea id="observacao" name="observacao" ></textarea>
+ </div> 
+  <div class="actions">
+    <input type="button" onclick="preparaRota();" value="Criar Rota">
+  </div>
+
+ <table >
+ 	<th>
+ 		<td>Descricao</td>
+ 		<td>Preco Venda</td>
+ 		<td>Quantidade</td>
+ 	</th>
+ 	<% @kits.each do |kit|%>
+ 		<tr>
+ 			<td><%= kit.descricao%></td>
+ 			<td><%= kit.preco_venda%></td>
+ 			<td>
+ 				<input type="text" size="5" id="quantidade_kit_<%= kit.id %>" name="quantidade_kit_<%= kit.id %>">
+ 				<a href="#" onclick="aumentaQuantidade('quantidade_kit_<%= kit.id%>')"><%= image_tag "Button-Add-icon.png", :size => "15x15" %></a>
+ 				<a href="#" onclick="diminuiQuantidade('quantidade_kit_<%= kit.id%>')"><%= image_tag "Button-Delete-icon.png", :size => "15x15" %></a>
+ 			</td>
+ 		</tr>
+ 	<% end %>
+ 	
+ 	<% @brindes.each do |brinde|%>
+ 		<tr>
+ 			<td><%= brinde.descricao%></td>
+ 		</tr>
+ 	<% end %>
+ 	
+ </table>  
+  
 <% end %>
 
-
+<script type="text/javascript">
+	var preparaRota = function(){
+		alert("implementar essa funcionalidade");
+	}
+	
+	var aumentaQuantidade = function(elemento_id){
+		valor = $("#"+elemento_id).val();
+		if(valor != "" && valor > 0 ){
+			valor++;
+			$("#"+elemento_id).val() = valor;
+		}else{
+			$("#"+elemento_id).val() = 1;
+		}
+		
+		
+		
+	}
+	
+	var diminuiQuantidade = function(elemento_id){
+		alert(elemento_id);
+	}
+</script>
+	

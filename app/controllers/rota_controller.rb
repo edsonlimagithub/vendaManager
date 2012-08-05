@@ -25,9 +25,9 @@ class RotaController < ApplicationController
   # GET /rota/new.json
   def new
     @rotum = Rotum.new
-    @produtos = Produto.find(:all, :conditions => ["empresa = ? and brinde <> ?", session[:usuario].empresa, "t"])
+    @kits = Kit.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
     @brindes  = Produto.find(:all, :conditions => ["empresa = ? and brinde = ?", session[:usuario].empresa, "t"])
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @rotum }
