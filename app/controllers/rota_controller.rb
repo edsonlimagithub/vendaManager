@@ -44,6 +44,11 @@ class RotaController < ApplicationController
   def create
     @rotum = Rotum.new(params[:rotum])
     @rotum.empresa = session[:usuario].empresa
+    
+    params.each do |key, value|
+      
+    end
+    
     respond_to do |format|
       if @rotum.save
         format.html { redirect_to @rotum, notice: 'Rotum was successfully created.' }

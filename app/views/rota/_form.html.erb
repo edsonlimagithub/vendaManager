@@ -22,16 +22,13 @@
  	Observacao<br />
  	<textarea id="observacao" name="observacao" ></textarea>
  </div> 
-  <div class="actions">
-    <input type="button" onclick="preparaRota();" value="Criar Rota">
-  </div>
 
  <table >
- 	<th>
- 		<td>Descricao</td>
- 		<td>Preco Venda</td>
- 		<td>Quantidade</td>
- 	</th>
+ 	<tr>
+ 		<th>Descricao</th>
+ 		<th>Preco Venda</th>
+ 		<th>Quantidade</th>
+ 	</tr>
  	<% @kits.each do |kit|%>
  		<tr>
  			<td><%= kit.descricao%></td>
@@ -43,33 +40,45 @@
  			</td>
  		</tr>
  	<% end %>
- 	
+ </table>
+
+ 	<div class="rota_titulo">Brindes</div>
+ <table>
+ 	<tr>
+ 		<th>Descricao</th>
+ 		<th>Preco Venda</th>
+ 		<th>Quantidade</th>
+ 	</tr>
  	<% @brindes.each do |brinde|%>
  		<tr>
  			<td><%= brinde.descricao%></td>
+ 			<td><%= brinde.preco_venda%></td>
+ 			<td>
+ 				<input type="text" size="5" id="quantidade_brinde_<%= brinde.id %>" name="quantidade_brinde_<%= brinde.id %>">
+ 				<a href="#" onclick="aumentaQuantidade('quantidade_brinde_<%= brinde.id%>')"><%= image_tag "Button-Add-icon.png", :size => "15x15" %></a>
+ 				<a href="#" onclick="diminuiQuantidade('quantidade_brinde_<%= brinde.id%>')"><%= image_tag "Button-Delete-icon.png", :size => "15x15" %></a>
+ 			</td>
  		</tr>
  	<% end %>
- 	
- </table>  
+ </table>	
+ <div class="actions">
+    <input type="button" onclick="preparaRota();" value="Criar Rota">
+  </div>  
   
 <% end %>
 
 <script type="text/javascript">
 	var preparaRota = function(){
-		alert("implementar essa funcionalidade");
+		$("#new_rotum").submit();
 	}
 	
 	var aumentaQuantidade = function(elemento_id){
-		valor = $("#"+elemento_id).val();
-		if(valor != "" && valor > 0 ){
+		if($("#" + elemento_id) != "" && $("#" + elemento_id) > 0 ){
 			valor++;
 			$("#"+elemento_id).val() = valor;
 		}else{
 			$("#"+elemento_id).val() = 1;
 		}
-		
-		
-		
 	}
 	
 	var diminuiQuantidade = function(elemento_id){
