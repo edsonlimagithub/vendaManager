@@ -44,20 +44,46 @@ class RotaController < ApplicationController
   def create
     @rotum = Rotum.new(params[:rotum])
     @rotum.empresa = session[:usuario].empresa
-    
-    params.each do |key, value|
-      
-    end
-    
-    respond_to do |format|
-      if @rotum.save
-        format.html { redirect_to @rotum, notice: 'Rotum was successfully created.' }
-        format.json { render json: @rotum, status: :created, location: @rotum }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @rotum.errors, status: :unprocessable_entity }
+    begin
+      @rotum.save
+      params.each do |key, value|
+        if value != ""
+           chave = key.split("_")
+          if chave[1] == "kit"
+            rota_item = new RotaItem
+            rota_item[:rota_id]    = @rotum.id
+            rota_item[:item_id]    = chave[2]
+            rota_item[:quantidade] = value
+            rota_item[:tipo_item]  = 1 #valor 1 indica que é um kit 
+            rota_item[:empresa]    = session[:usuario].empresa
+            rota_item.save
+          end
+        
+          if chave[1] == "brinde"
+            rota_item = new RotaItem
+            rota_item[:rota_id]    = @rotum.id
+            rota_item[:item_id]    = item[2]
+            rota_item[:quantidade] = value
+            rota_item[:tipo_item]  = 2 #valor 2 indicar que é um brinde
+            rota_item[:empresa]    = session[:usuario].empresa
+            rota_item.save
+          end
+        end
       end
+    rescue => e
+      @rotum.destroy
+      abort("Erro:#{e}")
     end
+    render :nothing => true
+    # respond_to do |format|
+      # if @rotum.save
+        # format.html { redirect_to @rotum, notice: 'Rotum was successfully created.' }
+        # format.json { render json: @rotum, status: :created, location: @rotum }
+      # else
+        # format.html { render action: "new" }
+        # format.json { render json: @rotum.errors, status: :unprocessable_entity }
+      # end
+    # end
   end
 
   # PUT /rota/1
