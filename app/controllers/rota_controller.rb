@@ -25,6 +25,8 @@ class RotaController < ApplicationController
   # GET /rota/new.json
   def new
     @rotum = Rotum.new
+    @cidades = Cidade.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
+    @vendedores = Vendedor.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
     @kits = Kit.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
     @brindes  = Produto.find(:all, :conditions => ["empresa = ? and brinde = ?", session[:usuario].empresa, "t"])
     
@@ -42,15 +44,23 @@ class RotaController < ApplicationController
   # POST /rota
   # POST /rota.json
   def create
-    @rotum = Rotum.new(params[:rotum])
-    @rotum.empresa = session[:usuario].empresa
+    @rotum = Rotum.new(:empresa => session[:usuario].empresa, 
+                       :cidade_id => params[:cidade][:id],
+                       :vendedor_id => params[:vendedor][:id],
+                       :observacao => params[:observacao]
+                        )
+    #parametros = params.to_hash                    
+    chave = nil
+    valor = nil
     begin
       @rotum.save
       params.each do |key, value|
+        chave = key
+        valor = value
         if value != ""
            chave = key.split("_")
           if chave[1] == "kit"
-            rota_item = new RotaItem
+            rota_item = RotaItem.new
             rota_item[:rota_id]    = @rotum.id
             rota_item[:item_id]    = chave[2]
             rota_item[:quantidade] = value
@@ -58,9 +68,8 @@ class RotaController < ApplicationController
             rota_item[:empresa]    = session[:usuario].empresa
             rota_item.save
           end
-        
           if chave[1] == "brinde"
-            rota_item = new RotaItem
+            rota_item = RotaItem.new
             rota_item[:rota_id]    = @rotum.id
             rota_item[:item_id]    = item[2]
             rota_item[:quantidade] = value
@@ -72,18 +81,17 @@ class RotaController < ApplicationController
       end
     rescue => e
       @rotum.destroy
-      abort("Erro:#{e}")
+      abort("Erro:#{e} - key:#{chave} - valor:#{valor}")
     end
-    render :nothing => true
-    # respond_to do |format|
-      # if @rotum.save
-        # format.html { redirect_to @rotum, notice: 'Rotum was successfully created.' }
-        # format.json { render json: @rotum, status: :created, location: @rotum }
-      # else
-        # format.html { render action: "new" }
-        # format.json { render json: @rotum.errors, status: :unprocessable_entity }
-      # end
-    # end
+    respond_to do |format|
+      if @rotum.save
+        format.html { redirect_to @rotum, notice: 'Rota criada com sucesso.' }
+        format.json { render json: @rotum, status: :created, location: @rotum }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @rotum.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PUT /rota/1

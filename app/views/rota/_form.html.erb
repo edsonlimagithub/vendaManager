@@ -12,11 +12,11 @@
   <% end %>
  <div>
  	Cidade<br />
- 	<%= select("post", "cidade", Cidade.all.collect {|p| [ p.nome, p.id ] }, {:include_blank => 'Selecione a cidade'}) %>
+ 	<%= select :cidade, :id,  @cidades.collect {|c| [c.nome, c.id]}, {:include_blank => 'Selecione um vendedor'} %>
  </div>
  <div>
  	Vendedor<br />
- 	<%= select("post", "vendedor", Vendedor.all.collect {|p| [ p.nome, p.id ] }, {:include_blank => 'Selecione um vendedor'}) %>
+ 	<%= select :vendedor, :id, @vendedores.collect {|p| [ p.nome, p.id ] }, {:include_blank => 'Selecione um vendedor'} %>
  </div>
  <div>
  	Observacao<br />
