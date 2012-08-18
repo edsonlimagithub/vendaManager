@@ -1,0 +1,18 @@
+o: ActiveSupport::Cache::Entry	:@compressedF:@expires_in0:@created_atf1344112447.7234855:@value{I"
+class:EFI"StaticAsset;
+FI"id;
+F"%839bec6632c728f11840f3bcc97be40aI"logical_path;
+FI"Button-Delete-icon.png;
+TI"pathname;
+FI"3$root/app/assets/images/Button-Delete-icon.png;
+FI"content_type;
+FI"image/png;
+FI"
+mtime;
+FI"2012-08-04T17:33:18-03:00;
+FI"length;
+FI"
+26601;
+FI"digest;
+F"%55ef145b5af0b3fe0f86f2e965171b58I"_version;
+F"%46dde6621c301f4928e3b34efee9e3b5

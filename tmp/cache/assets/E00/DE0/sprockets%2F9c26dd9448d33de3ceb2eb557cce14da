@@ -1,0 +1,18 @@
+o: ActiveSupport::Cache::Entry	:@compressedF:@expires_in0:@created_atf1344110983.6024384:@value{I"
+class:EFI"StaticAsset;
+FI"id;
+F"%94888678ac184fc750e7913f92e982a6I"logical_path;
+FI"Button-Add-icon.png;
+TI"pathname;
+FI"0$root/app/assets/images/Button-Add-icon.png;
+FI"content_type;
+FI"image/png;
+FI"
+mtime;
+FI"2012-08-04T16:56:50-03:00;
+FI"length;
+FI"
+35415;
+FI"digest;
+F"%9447e86486ac394b43411444685587ceI"_version;
+F"%46dde6621c301f4928e3b34efee9e3b5
