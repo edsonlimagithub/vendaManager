@@ -2,6 +2,6 @@
 log/*
 config/database.yml
 *.cache
-#tmp/cache/*
+tmp/*
 .bundle
 .rvmrc
