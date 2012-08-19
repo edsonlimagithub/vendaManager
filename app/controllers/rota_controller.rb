@@ -2,7 +2,7 @@ class RotaController < ApplicationController
   # GET /rota
   # GET /rota.json
   def index
-    @rota = Rotum.afind(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
+    @rota = Rotum.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
 
     respond_to do |format|
       format.html # index.html.erb
