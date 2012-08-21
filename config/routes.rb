@@ -17,6 +17,8 @@ VendaManager::Application.routes.draw do
   match 'rota/pesquisa_brinde', :controller => 'kits', :action => 'pesquisa_brinde'  
   match 'rota/inserir_brinde_rota', :controller => 'kits', :action => 'inserir_brinde_rota'
   match 'rota/excluir_item_brinde', :controller => 'kits', :action => 'excluir_item_brinde'
+  match 'rota/retorno_conferencia', :controller => 'rota',  :action => 'retorno_conferencia'
+  match 'rota/retorno_conferencia_result', :controller => 'rota',  :action => 'retorno_conferencia_result'
   
   match 'rota/nova', :controller => 'rota', :action => 'nova'
 

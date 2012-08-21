@@ -1,5 +1,5 @@
 class AddEmpresaToCidades < ActiveRecord::Migration
   def change
-    add_column :cidades, :empresa, :integer
+    # add_column :cidades, :empresa, :integer
   end
 end

@@ -49,7 +49,6 @@ class RotaController < ApplicationController
                        :vendedor_id => params[:vendedor][:id],
                        :observacao => params[:observacao]
                         )
-    #parametros = params.to_hash                    
     chave = nil
     valor = nil
     begin
@@ -152,6 +151,15 @@ class RotaController < ApplicationController
     
     
     render :nothing => true
+  end
+  
+  def retorno_conferencia
+    @rotas = Rotum.find(:all, :conditions => ["data_retorno is null"])
+    abort(@rotas.inspect)
+  end
+  
+  def retorno_conferencia_resultado
+    
   end
   
 end
