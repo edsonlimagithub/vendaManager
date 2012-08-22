@@ -1,4 +1,5 @@
 require 'rota/pesquisa_rota'
+require 'produtos/funcoes_produtos'
 class RotaController < ApplicationController
   # GET /rota
   # GET /rota.json
@@ -137,6 +138,8 @@ class RotaController < ApplicationController
       rotaItem.quantidade = elemento_array[1]
       rotaItem.tipo_item  = 1 #Indica que o elemento é um kit
       rotaItem.save
+      FunctionsProduct.decreaseAmountStockInternal rotaItem.id, rotaItem.quantidade
+      FunctionsProduct.addAmountStockExternal rotaItem.id, rotaItem.quantidade
     end
     
     brindes.each do|e|
