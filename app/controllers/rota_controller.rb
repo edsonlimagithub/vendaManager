@@ -1,3 +1,4 @@
+require 'rota/pesquisa_rota'
 class RotaController < ApplicationController
   # GET /rota
   # GET /rota.json
@@ -122,7 +123,6 @@ class RotaController < ApplicationController
   end
   
   def nova
-    puts params.inspect
     rota = Rotum.new
     rota.cidade_id   = params[:cidade]
     rota.vendedor_id = params[:vendedor]
@@ -154,12 +154,10 @@ class RotaController < ApplicationController
   end
   
   def retorno_conferencia
-    @rotas = Rotum.find(:all, :conditions => ["data_retorno is null"])
-    abort(@rotas.inspect)
+    @rotas = Rotum.find(:all, :conditions => ["data_retorno is null AND empresa = ?", session[:usuario].empresa])
   end
   
-  def retorno_conferencia_resultado
-    
+  def retorno_conferencia_result    
   end
   
 end
