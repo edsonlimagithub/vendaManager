@@ -68,6 +68,12 @@ class RotaController < ApplicationController
             rota_item[:tipo_item]  = 1 #valor 1 indica que é um kit 
             rota_item[:empresa]    = session[:usuario].empresa
             rota_item.save
+            itemKit = ItemKit.find(:all, :conditions => ["kit_id = ?", rota_item.item_id])
+                   
+            itemKit.each do |item|
+              FunctionsProduct.decreaseAmountStockInternal item.id, item.quantidade
+              FunctionsProduct.addAmountStockExternal item.id, item.quantidade
+            end
           end
           if chave[1] == "brinde"
             rota_item = RotaItem.new
@@ -138,8 +144,8 @@ class RotaController < ApplicationController
       rotaItem.quantidade = elemento_array[1]
       rotaItem.tipo_item  = 1 #Indica que o elemento é um kit
       rotaItem.save
-      FunctionsProduct.decreaseAmountStockInternal rotaItem.id, rotaItem.quantidade
-      FunctionsProduct.addAmountStockExternal rotaItem.id, rotaItem.quantidade
+      
+      
     end
     
     brindes.each do|e|
@@ -150,6 +156,8 @@ class RotaController < ApplicationController
       rotaItem.quantidade = elemento_array[1]
       rotaItem.tipo_item  = 2 #Indica que o elemento é um brinde
       rotaItem.save
+      FunctionsProduct.decreaseAmountStockInternal rotaItem.item_id, rotaItem.quantidade
+      FunctionsProduct.addAmountStockExternal rotaItem.item_id, rotaItem.quantidade
     end
     
     

@@ -26,7 +26,7 @@
     <td><%= produto.preco_venda %></td>
     <td><%= produto.desativado %></td>
     <td><%= produto.estoque_interno %></td>
-    <td></td>
+    <td><%= produto.estoque_externo %></td>
     <td><%= link_to 'Exibir', produto %></td>
     <td><%= link_to 'Editar', edit_produto_path(produto) %></td>
     <td><%= link_to 'Apagar', produto, confirm: 'Deseja realmente apagar?', method: :delete %></td>

@@ -1,4 +1,5 @@
 class FunctionsProduct
+  
   def self.addAmountStockInternal product_id, amount
     product = Produto.find(product_id)
     product.estoque_interno += amount
