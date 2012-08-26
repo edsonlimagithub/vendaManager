@@ -26,7 +26,9 @@
 		
 		<center><small>GERENCIADOR DE VENDAS EXTERNAS</small></center>
 		<br />
-		<%= session[:usuario].inspect %>
+		<div id="empresa">
+			Usuario: <%= session[:usuario].nome %>
+		</div>
 		<%= render :partial => 'layouts/menu'%>
 		
 		<div class="principal">

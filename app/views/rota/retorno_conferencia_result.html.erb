@@ -1,3 +1,76 @@
-<%= @rotaKits.inspect %><br>
-<%= @rotaBrindes.inspect %>
+<form id="formConferencia">
+	<h3>Produtos</h3>
+	<table>
+		<tr>
+			<th>
+				Código
+			</th>
+			<th>
+				Descricao
+			</th>
+			<th>
+				Quantidade
+			</th>
+			<th>
+				Retorno
+			</th>
+			<th>
+				Quebrado
+			</th>
+		</tr>
+		<% @rotaKits.each do |itemRota|%>
+			<tr>
+				<td>
+					<%= itemRota.id %>
+				</td>
+				<td>
+					<%= Kit.find(itemRota.item_id).descricao %>
+				</td>
+				<td>
+					<%= itemRota.quantidade %>
+				</td>
+				<td>
+					<input type="text" name="retorno_<%= itemRota.id%>" id="retorno_<%= itemRota.id%>" size=5/>
+				</td>
+				<td>
+					<input type="text" name="quebrado_<%= itemRota.id%>" id="quebrado_<%= itemRota.id%>" size=5 />
+				</td>
+			</tr>
+		<% end %>
+	</table>
+	
+	<h3>Brindes</h3>
+	<table>
+		<tr>
+			<th>
+				Código
+			</th>
+			<th>
+				Descricao
+			</th>
+			<th>
+				Quantidade
+			</th>
+			<th>
+				Retorno
+			</th>
+		</tr>
+		<% @rotaBrindes.each do |itemRota|%>
+			<tr>
+				<td>
+					<%= itemRota.id %>
+				</td>
+				<td>
+					<%= Produto.find(itemRota.item_id).descricao %>
+				</td>
+				<td>
+					<%= itemRota.quantidade %>
+				</td>
+				<td>
+					<input type="text" name="retorno_<%= itemRota.id%>" id="retorno_<%= itemRota.id%>" size=5/>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+</form>
 
