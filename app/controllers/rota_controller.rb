@@ -46,6 +46,7 @@ class RotaController < ApplicationController
   # POST /rota
   # POST /rota.json
   def create
+    functionsProduct = FunctionsProduct.new
     @rotum = Rotum.new(:empresa => session[:usuario].empresa, 
                        :cidade_id => params[:cidade][:id],
                        :vendedor_id => params[:vendedor][:id],
@@ -58,24 +59,23 @@ class RotaController < ApplicationController
       params.each do |key, value|
         chave = key
         valor = value
-        if value != ""
+        if chave["quantidade"]
            chave = key.split("_")
           if chave[1] == "kit"
             rota_item = RotaItem.new
-            rota_item[:rota_id]    = @rotum.id
-            rota_item[:item_id]    = chave[2]
-            rota_item[:quantidade] = value
-            rota_item[:tipo_item]  = 1 #valor 1 indica que é um kit 
-            rota_item[:empresa]    = session[:usuario].empresa
+            rota_item.rota_id    = @rotum.id
+            rota_item.item_id    = chave[2]
+            rota_item.quantidade = value
+            rota_item.tipo_item  = 1 #valor 1 indica que é um kit 
+            rota_item.empresa    = session[:usuario].empresa
             rota_item.save
             itemKit = ItemKit.find(:all, :conditions => ["kit_id = ?", rota_item.item_id])
-                   
             itemKit.each do |item|
-              FunctionsProduct.decreaseAmountStockInternal item.id, item.quantidade
-              FunctionsProduct.addAmountStockExternal item.id, item.quantidade
+              functionsProduct.decreaseAmountStockInternal item[:produto_id], item[:quantidade] * value.to_f
+              functionsProduct.addAmountStockExternal item[:produto_id], item[:quantidade] * value.to_f
             end
           end
-          if chave[1] == "brinde"
+          if chave[1] == "brintde"
             rota_item = RotaItem.new
             rota_item[:rota_id]    = @rotum.id
             rota_item[:item_id]    = item[2]
@@ -83,6 +83,8 @@ class RotaController < ApplicationController
             rota_item[:tipo_item]  = 2 #valor 2 indicar que é um brinde
             rota_item[:empresa]    = session[:usuario].empresa
             rota_item.save
+            functionsProduct.decreaseAmountStockInternal item[:produto_id], item[:quantidade] * value.to_f
+            functionsProduct.addAmountStockExternal item[:produto_id], item[:quantidade] * value.fo_f
           end
         end
       end
@@ -129,40 +131,40 @@ class RotaController < ApplicationController
     end
   end
   
-  def nova
-    rota = Rotum.new
-    rota.cidade_id   = params[:cidade]
-    rota.vendedor_id = params[:vendedor]
-    brindes          = params[:brindes].split("|")
-    kits             = params[:kits].split("|")
-    rota.save
-    kits.each do|e|
-      rotaItem = RotaItem.new
-      elemento_array      = e.split("_")
-      rotaItem.rota_id    = rota.id
-      rotaItem.item_id    = elemento_array[0]
-      rotaItem.quantidade = elemento_array[1]
-      rotaItem.tipo_item  = 1 #Indica que o elemento é um kit
-      rotaItem.save
-      
-      
-    end
-    
-    brindes.each do|e|
-      rotaItem = RotaItem.new
-      elemento_array      = e.split("_")
-      rotaItem.rota_id    = rota.id
-      rotaItem.item_id    = elemento_array[0]
-      rotaItem.quantidade = elemento_array[1]
-      rotaItem.tipo_item  = 2 #Indica que o elemento é um brinde
-      rotaItem.save
-      FunctionsProduct.decreaseAmountStockInternal rotaItem.item_id, rotaItem.quantidade
-      FunctionsProduct.addAmountStockExternal rotaItem.item_id, rotaItem.quantidade
-    end
-    
-    
-    render :nothing => true
-  end
+  # def nova
+    # rota = Rotum.new
+    # rota.cidade_id   = params[:cidade]
+    # rota.vendedor_id = params[:vendedor]
+    # brindes          = params[:brindes].split("|")
+    # kits             = params[:kits].split("|")
+    # rota.save
+    # kits.each do|e|
+      # rotaItem = RotaItem.new
+      # elemento_array      = e.split("_")
+      # rotaItem.rota_id    = rota.id
+      # rotaItem.item_id    = elemento_array[0]
+      # rotaItem.quantidade = elemento_array[1]
+      # rotaItem.tipo_item  = 1 #Indica que o elemento é um kit
+      # rotaItem.save
+#       
+#       
+    # end
+#     
+    # brindes.each do|e|
+      # rotaItem = RotaItem.new
+      # elemento_array      = e.split("_")
+      # rotaItem.rota_id    = rota.id
+      # rotaItem.item_id    = elemento_array[0]
+      # rotaItem.quantidade = elemento_array[1]
+      # rotaItem.tipo_item  = 2 #Indica que o elemento é um brinde
+      # rotaItem.save
+      # FunctionsProduct.decreaseAmountStockInternal rotaItem.item_id, rotaItem.quantidade
+      # FunctionsProduct.addAmountStockExternal rotaItem.item_id, rotaItem.quantidade
+    # end
+#     
+#     
+    # render :nothing => true
+  # end
   
   def retorno_conferencia
     @rotas = Rotum.find(:all, :conditions => ["data_retorno is null AND empresa = ?", session[:usuario].empresa])

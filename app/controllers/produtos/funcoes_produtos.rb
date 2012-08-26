@@ -1,26 +1,45 @@
 class FunctionsProduct
   
-  def self.addAmountStockInternal product_id, amount
+  def addAmountStockInternal product_id, amount
     product = Produto.find(product_id)
+    if product.estoque_interno.nil?
+      product.estoque_interno = 0
+    end
     product.estoque_interno += amount
     product.save
   end
   
-  def self.decreaseAmountStockInternal product_id, amount
+  def decreaseAmountStockInternal product_id, amount
     product = Produto.find(product_id)
-    product.estoque_interno += amount
+    if product.estoque_interno.nil?
+      product.estoque_interno = 0
+    end
+    product.estoque_interno -= amount
     product.save
   end
   
-  def self.addAmountStockExternal product_id, amount
+  def addAmountStockExternal product_id, amount
     product = Produto.find(product_id)
+    if product.estoque_externo.nil?
+      product.estoque_externo = 0
+    end
     product.estoque_externo += amount
     product.save
   end
   
-  def self.decreaseAmountStockInternal product_id, amount
+  def decreaseAmountStockExternal product_id, amount
     product = Produto.find(product_id)
-    product.estoque_externo += amount
+    if product.estoque_externo.nil?
+      product.estoque_externo = 0
+    end
+    product.estoque_externo -= amount
     product.save
   end
+  
+  private 
+  
+  def changeCampNilToNumber campo
+    
+  end
+  
 end
