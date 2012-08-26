@@ -75,16 +75,16 @@ class RotaController < ApplicationController
               functionsProduct.addAmountStockExternal item[:produto_id], item[:quantidade] * value.to_f
             end
           end
-          if chave[1] == "brintde"
+          if chave[1] == "brinde"
             rota_item = RotaItem.new
             rota_item[:rota_id]    = @rotum.id
-            rota_item[:item_id]    = item[2]
+            rota_item[:item_id]    = chave[2]
             rota_item[:quantidade] = value
             rota_item[:tipo_item]  = 2 #valor 2 indicar que é um brinde
             rota_item[:empresa]    = session[:usuario].empresa
             rota_item.save
-            functionsProduct.decreaseAmountStockInternal item[:produto_id], item[:quantidade] * value.to_f
-            functionsProduct.addAmountStockExternal item[:produto_id], item[:quantidade] * value.fo_f
+            functionsProduct.decreaseAmountStockInternal rota_item[:item_id], rota_item[:quantidade] 
+            functionsProduct.addAmountStockExternal rota_item[:item_id], rota_item[:quantidade] 
           end
         end
       end
@@ -171,6 +171,9 @@ class RotaController < ApplicationController
   end
   
   def retorno_conferencia_result    
+    @rotaKits = RotaItem.find(:all, :conditions => ["rota_id = ? AND tipo_item = 1", params[:id]])
+    @rotaBrindes = RotaItem.find(:all, :conditions => ["rota_id = ? AND tipo_item = 2", params[:id]])
+     
   end
   
 end
