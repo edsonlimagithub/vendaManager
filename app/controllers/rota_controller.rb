@@ -167,10 +167,19 @@ class RotaController < ApplicationController
   # end
   
   def retorno_conferencia
-    @rotas = Rotum.find(:all, :conditions => ["data_retorno is null AND empresa = ?", session[:usuario].empresa])
+    @rotas = Rotum.find(:all, :conditions => ["data_retorno is null AND empresa = ? AND inativa is not true" , session[:usuario].empresa])
   end
   
   def retorno_conferencia_result    
+    @rotaKits    = RotaItem.find(:all, :conditions => ["rota_id = ? AND tipo_item = 1", params[:id]])
+    @rotaBrindes = RotaItem.find(:all, :conditions => ["rota_id = ? AND tipo_item = 2", params[:id]])
+  end
+  
+  def retorno_rota
+    @rotas = Rotum.find(:all, :conditions => ["data_retorno is null AND empresa = ? AND inativa is not true", session[:usuario].empresa])
+  end
+  
+  def retorno_rota_result
     @rotaKits    = RotaItem.find(:all, :conditions => ["rota_id = ? AND tipo_item = 1", params[:id]])
     @rotaBrindes = RotaItem.find(:all, :conditions => ["rota_id = ? AND tipo_item = 2", params[:id]])
   end

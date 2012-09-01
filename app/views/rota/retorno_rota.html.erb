@@ -1,0 +1,25 @@
+<h3>Retorno</h3>
+<table> 
+	<tr>
+		<th>Vendedor</th>
+		<th>Cidade</th>
+		<th>Data</th>
+		<th>Conferente Saída</th>
+		<th>Receber</th>
+	</tr>
+	<% @rotas.each do |rota| %>
+		<tr>
+			<td><%= Vendedor.find(rota.vendedor_id).nome %></td>
+			<td><%= Cidade.find(rota.cidade_id).nome %></td>
+			<td><%= rota.created_at %></td>
+			<td>Conferente Saída</td>
+			<td>
+				
+			 	<%= link_to (image_tag 'receive_icon.png', :class => 'css', :size => '30x30'),
+        		({:controller => 'rota', :action => 'retorno_rota_result', :id => rota.id})
+        		%>
+
+			 </td>
+		</tr>
+	<% end %>
+</table>
