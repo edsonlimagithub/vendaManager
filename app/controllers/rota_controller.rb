@@ -1,4 +1,5 @@
 require 'rota/pesquisa_rota'
+require 'rota/processa_rota'
 require 'produtos/funcoes_produtos'
 class RotaController < ApplicationController
   # GET /rota
@@ -182,6 +183,10 @@ class RotaController < ApplicationController
   def retorno_rota_result
     @rotaKits    = RotaItem.find(:all, :conditions => ["rota_id = ? AND tipo_item = 1", params[:id]])
     @rotaBrindes = RotaItem.find(:all, :conditions => ["rota_id = ? AND tipo_item = 2", params[:id]])
+  end
+  
+  def processa_retorno_rota
+    ProcessaRota.retorno params
   end
   
 end
