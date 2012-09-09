@@ -51,7 +51,8 @@ class RotaController < ApplicationController
     @rotum = Rotum.new(:empresa => session[:usuario].empresa, 
                        :cidade_id => params[:cidade][:id],
                        :vendedor_id => params[:vendedor][:id],
-                       :observacao => params[:observacao]
+                       :observacao => params[:observacao],
+                       :rota_numero => params[:rota][:numero]
                         )
     chave = nil
     valor = nil
