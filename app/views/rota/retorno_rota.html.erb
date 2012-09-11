@@ -5,14 +5,16 @@
 		<th>Cidade</th>
 		<th>Data</th>
 		<th>Conferente Saída</th>
-		<th>Receber</th>
+		<th>Observação</th>
+		<th>Selecionar</th>
 	</tr>
 	<% @rotas.each do |rota| %>
 		<tr>
 			<td><%= Vendedor.find(rota.vendedor_id).nome %></td>
 			<td><%= Cidade.find(rota.cidade_id).nome %></td>
-			<td><%= rota.created_at %></td>
+			<td><%= rota.created_at.to_date %></td>
 			<td>Conferente Saída</td>
+			<td><textarea><%= rota.observacao %></textarea></td>
 			<td>
 				
 			 	<%= link_to (image_tag 'receive_icon.png', :class => 'css', :size => '30x30'),

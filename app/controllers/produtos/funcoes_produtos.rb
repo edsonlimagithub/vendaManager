@@ -56,7 +56,6 @@ class FunctionsProduct
   def self.transferKitExternalToInternal kit_id, amount
     itemKit = ItemKit.find(:all, :conditions => ["kit_id = ?", kit_id])
     itemKit.each do |item|
-       #abort item.inspect
       FunctionsProduct.transferProductExternalToInternal item[:produto_id], item[:quantidade] * amount.to_f
     end
   end
