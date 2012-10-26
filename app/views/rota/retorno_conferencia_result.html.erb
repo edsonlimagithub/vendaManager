@@ -1,4 +1,5 @@
-<form id="formConferencia">
+<form id="formConferencia" method="post" action="/rota/processa_conferencia">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<h3>Produtos</h3>
 	<table>
 		<tr>
@@ -15,13 +16,13 @@
 				Retorno
 			</th>
 			<th>
-				Quebrado
+				Dividido
 			</th>
 		</tr>
 		<% @rotaKits.each do |itemRota|%>
 			<tr>
 				<td>
-					<%= itemRota.id %>
+					<%= itemRota.item_id %>
 				</td>
 				<td>
 					<%= Kit.find(itemRota.item_id).descricao %>
@@ -30,10 +31,10 @@
 					<%= itemRota.quantidade %>
 				</td>
 				<td>
-					<input type="text" name="retorno_<%= itemRota.id%>" id="retorno_<%= itemRota.id%>" size=5/>
+					<input type="text" name="kit_<%= Kit.find(itemRota.item_id).id %>" id="kit_<%= Kit.find(itemRota.item_id).id %>" size=5/>
 				</td>
 				<td>
-					<input type="text" name="quebrado_<%= itemRota.id%>" id="quebrado_<%= itemRota.id%>" size=5 />
+					<input type="text" name="dividido_<%= Kit.find(itemRota.item_id).id %>" id="dividido_<%= Kit.find(itemRota.item_id).id %>" size=5/>
 				</td>
 			</tr>
 		<% end %>
@@ -58,7 +59,7 @@
 		<% @rotaBrindes.each do |itemRota|%>
 			<tr>
 				<td>
-					<%= itemRota.id %>
+					<%= itemRota.item_id %>
 				</td>
 				<td>
 					<%= Produto.find(itemRota.item_id).descricao %>
@@ -67,10 +68,17 @@
 					<%= itemRota.quantidade %>
 				</td>
 				<td>
-					<input type="text" name="retorno_<%= itemRota.id%>" id="retorno_<%= itemRota.id%>" size=5 />
+					<input type="text" name="brinde_<%= itemRota.id%>" id="brinde_<%= itemRota.id%>" size=5/>
 				</td>
 			</tr>
 		<% end %>
 	</table>
+	<input type="button" value="Finalizar" onclick="validaform();">
 </form>
+
+<script>
+	var validaform = function(){
+		$("#formConferencia").submit();
+	}
+</script>
 

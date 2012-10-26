@@ -190,4 +190,9 @@ class RotaController < ApplicationController
     ProcessaRota.retorno params
   end
   
+  def processa_conferencia
+    ProcessaRota.conferencia
+    abort params.inspect
+  end
+  
 end

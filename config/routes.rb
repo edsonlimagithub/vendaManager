@@ -22,6 +22,7 @@ VendaManager::Application.routes.draw do
   match 'rota/retorno_rota', :controller => 'rota', :action => 'retorno_rota'
   match "rota/retorno_rota_result/:id", :controller => 'rota',  :action => 'retorno_rota_result'
   match 'rota/processa_retorno_rota', :controller => 'rota', :action => 'processa_retorno_rota'
+  match 'rota/processa_conferencia', :controller => 'rota', :action => 'processa_conferencia'
   
   match 'rota/nova', :controller => 'rota', :action => 'nova'
 

@@ -2,7 +2,8 @@ class UsuariosController < ApplicationController
   # GET /usuarios
   # GET /usuarios.json
   def index
-    @usuarios = Usuario.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
+    @usuarios = Usuario.find(:all)
+    @empresas = Empresa.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +26,7 @@ class UsuariosController < ApplicationController
   # GET /usuarios/new.json
   def new
     @usuario = Usuario.new
+    @empresas = Empresa.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +37,7 @@ class UsuariosController < ApplicationController
   # GET /usuarios/1/edit
   def edit
     @usuario = Usuario.find(params[:id])
+    @empresas = Empresa.all
   end
 
   # POST /usuarios

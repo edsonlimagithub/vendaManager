@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :nome %><br />
     <%= f.text_field :nome %>
@@ -29,7 +28,7 @@
   </div>
   <div class="field">
     <%= f.label :empresa %><br />
-    <%= f.text_field :empresa %>
+	<%= select("usuario", "empresa", @empresas.collect {|e| [ e.razao, e.id ] }, @usuario.empresa.nil? ? "" : :selected => @usuario.empresa) %>  
   </div>
   <div class="actions">
     <%= f.submit %>
