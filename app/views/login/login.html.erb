@@ -1,4 +1,4 @@
-<html id='lugar'>
+<!-- <html id='lugar'> 
 <head></head>
 <body>
 	Esta aqui
@@ -10,5 +10,108 @@
 		<input type="password" id="senha" name="senha"/><br />
 		<input type="submit" value="Enviar">		
 	</form>
+</body>
+</html> -->
+
+
+<html>
+<head>
+<style>
+	body {
+	background-color: #F8F8F8;
+	color : #000;
+	margin: 0px;
+	text-align: center;
+}
+
+#page {
+	background-color: #F8F8F8;
+	text-align: left;
+	margin:0px auto;
+	padding: 15px;
+	width: 800px;
+	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	width: 800px;
+	text-align: center;
+}
+
+#login {
+	border: 6px solid #999;
+	width: 500px;
+	margin: auto;
+	background-color: white;
+}
+
+#login legend {
+	font-size: 36px;
+	font-weight: bold;
+}
+
+#login .input {
+	font-family: Verdana,Arial,Helvetica,Geneva,sans-serif;
+	font-size:18px;
+	padding:2px;
+	color: green;
+}
+
+#login .label {
+	font-size: 18px;
+}
+
+#login .button, .button {
+	font-size: 22px;
+	height: 32px;
+	font-family: "Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
+	/*font:bold 100% "Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;*/
+	-webkit-appearance:button;
+}
+
+.login_table_left {
+}
+
+.hint {
+	font-size: 80%;
+	color: #999;
+}
+
+.whitelist {
+	width: 500px;
+	margin: auto;
+	background-color: white;
+	margin-top: -50px;
+	margin-bottom: 20px;
+	padding: 10px;
+	border: 1px solid #999;
+}
+</style>
+</head>
+<body>
+<div id="page" style="width: 800px; text-align: center; background-color: #F8F8F8">
+	
+
+<br><br><br>
+<br><br><br>
+
+<form name="CFForm_1" id="CFForm_1" action="/do_login" method="post" >
+	
+
+	<fieldset id="login">
+		<legend>Venda Manager</legend>
+
+		<table cellspacing="10" width="100%">
+			<tbody><tr class="login_table_left">
+				<td class="label" width="100" align="right">Usuário</td>
+				<td><input name="login" id="auth_username" maxlength="32" tabindex="1" class="input" size="24" border="0" type="text"></td>
+			
+			</tr><tr class="login_table_left">
+				<td class="label" width="100" align="right">Senha</td>
+				<td><input name="senha" id="auth_password" maxlength="128" tabindex="2" class="input" size="24" border="0" type="password"></td>
+			
+		</tr></tbody></table>
+
+		<input class="button" value="Log in" style="margin-top: 10px" type="submit">
+		<p class="hint" style="margin-bottom: 0px"><%= flash_message %></p>
+	</fieldset>
+</form>
 </body>
 </html>

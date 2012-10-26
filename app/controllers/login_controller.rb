@@ -1,3 +1,5 @@
+#enconding: utf-8
+
 class LoginController < ApplicationController
   
   def login
@@ -10,6 +12,7 @@ class LoginController < ApplicationController
       session[:usuario] = usuario
       redirect_to '/home'
     else
+      flash[:error] = "Usuario ou senha invalidos."
       redirect_to '/'
     end
   end
