@@ -1,0 +1,42 @@
+#encoding: utf-8
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<title>VENDA MANAGER</title>
+
+	<%= stylesheet_link_tag "memu-0.1" %>
+	<%= stylesheet_link_tag "memu_atualizado" %>
+	<%= stylesheet_link_tag "jquery-ui"%>
+	<%= stylesheet_link_tag "style" %>
+	
+	<%= javascript_include_tag :jquery %>
+	<%= javascript_include_tag :application %>
+	<%= javascript_include_tag "jquery-ui.min" %>
+	<%= javascript_include_tag :alphanumeric %>
+	<%= javascript_include_tag :price_format %>
+	<%= javascript_include_tag "jquery_tmpl_min"%>
+  	<%= javascript_include_tag "jquery_tmplPlus_min"%>
+
+	<style type="text/css" media="screen">
+		
+	</style>
+	</head>
+	<body style="margin:0">
+		
+		<center><small>GERENCIADOR DE VENDAS EXTERNAS</small></center>
+		<br />
+		<div id="empresa">
+			Usuario: <%= session[:usuario].nome %>
+		</div>
+		<%= render :partial => 'layouts/menu'%>
+		
+		<div class="principal">
+			<%= yield %>
+		</div>
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+		
+		<script type="text/javascript">
+		</script>
+	</body>
+</html>

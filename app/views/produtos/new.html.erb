@@ -1,5 +1,10 @@
-<h1>New produto</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', produtos_path %>
+<%= render :partial => 'menu_produtos' %>
+<div class="grid_10">
+	<div class="box round">
+		<h2>Novo Produto</h2>
+		
+		<%= render 'form' %>
+		
+		<%= link_to 'Back', produtos_path %>
+	</div>
+</div>

@@ -1,3 +1,7 @@
+<%= render :partial => 'menu_rotas' %>
+<div class="grid_10">
+	<div class="box round">
+		<h2>Retorno Rota</h2>
 <form id="formConferencia" method="post" action="/rota/processa_retorno_rota">
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<h3>Produtos</h3>
@@ -69,7 +73,8 @@
 	</table>
 	<input type="button" value="Finalizar" onclick="validaform();">
 </form>
-
+</div>
+</div>
 <script>
 	var validaform = function(){
 		$("#formConferencia").submit();

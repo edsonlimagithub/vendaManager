@@ -1,42 +1,107 @@
-#encoding: utf-8
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-	<title>VENDA MANAGER</title>
-
-	<%= stylesheet_link_tag "memu-0.1" %>
-	<%= stylesheet_link_tag "memu_atualizado" %>
-	<%= stylesheet_link_tag "jquery-ui"%>
-	<%= stylesheet_link_tag "style" %>
-	
-	<%= javascript_include_tag :jquery %>
-	<%= javascript_include_tag :application %>
-	<%= javascript_include_tag "jquery-ui.min" %>
-	<%= javascript_include_tag :alphanumeric %>
-	<%= javascript_include_tag :price_format %>
-	<%= javascript_include_tag "jquery_tmpl_min"%>
-  	<%= javascript_include_tag "jquery_tmplPlus_min"%>
-
-	<style type="text/css" media="screen">
-		
-	</style>
-	</head>
-	<body style="margin:0">
-		
-		<center><small>GERENCIADOR DE VENDAS EXTERNAS</small></center>
-		<br />
-		<div id="empresa">
-			Usuario: <%= session[:usuario].nome %>
-		</div>
-		<%= render :partial => 'layouts/menu'%>
-		
-		<div class="principal">
-			<%= yield %>
-		</div>
-		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-		
-		<script type="text/javascript">
-		</script>
-	</body>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Venda Manager</title>
+    <%= stylesheet_link_tag "reset",  :media => "screen" %>
+    <%= stylesheet_link_tag "text",   :media => "screen" %>
+    <%= stylesheet_link_tag "grid",   :media => "screen" %>
+    <%= stylesheet_link_tag "layout", :media => "screen" %>
+    <%= stylesheet_link_tag "nav",    :media => "screen" %>
+    <!--[if IE 6]><link rel="stylesheet" type="text/css" href="css/ie6.css" media="screen" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen" /><![endif]-->
+    <%= stylesheet_link_tag "fancy-button/fancy-button" %>
+    <%= stylesheet_link_tag "table/demo_page"%>
+    <!--Jquery UI CSS-->
+    <%= stylesheet_link_tag "themes/base/jquery.ui.all" %>
+    
+    <!-- BEGIN: load jquery -->
+    <%= javascript_include_tag "jquery-1.6.4.min" %>
+    <%= javascript_include_tag "jquery-ui/jquery.ui.core.min" %>
+    <%= javascript_include_tag "jquery-ui/jquery.ui.accordion.min" %>
+    <%= javascript_include_tag "jquery-ui/jquery.effects.core.min" %>
+    <%= javascript_include_tag "jquery-ui/jquery.effects.slide.min" %>
+    
+    <%= javascript_include_tag "jquery-ui/jquery.ui.mouse.min"%>
+    <%= javascript_include_tag "jquery-ui/jquery.ui.sortable.min"%>
+    <%= javascript_include_tag "table/jquery.dataTables.min"%>
+    <!-- END: load jquery -->
+    <!--jQuery Date Picker-->
+    <%= javascript_include_tag "jquery-ui/jquery.ui.widget.min"%>
+    <%= javascript_include_tag "jquery-ui/jquery.ui.datepicker.min"%>
+    <%= javascript_include_tag "jquery-ui/jquery.ui.progressbar.min"%>
+    <!--Fancy Button-->
+    <%= javascript_include_tag "fancy-button/fancy-button"%>
+    <%= javascript_include_tag "tiny-mce/plugins/table/js/table" %>
+     <!-- jQuery dialog related-->
+    <%= javascript_include_tag "jquery-ui/external/jquery.bgiframe-2.1.2" %>
+    <%= javascript_include_tag "jquery-ui/jquery.ui.draggable.min" %>
+    <%= javascript_include_tag "jquery-ui/jquery.ui.position.min" %>
+    <%= javascript_include_tag "jquery-ui/jquery.ui.resizable.min" %>
+    <%= javascript_include_tag "jquery-ui/jquery.ui.dialog.min" %>
+    <%= javascript_include_tag "jquery-ui/jquery.effects.core.min" %>
+    <%= javascript_include_tag "jquery-ui/jquery.effects.blind.min" %>
+    <%= javascript_include_tag "jquery-ui/jquery.effects.explode.min" %>
+    
+    <%= javascript_include_tag "jquery.price_format.1.7.min" %>
+    
+    <%= javascript_include_tag "jquery-ui/jquery.ui.accordion.min"%>
+    <%= javascript_include_tag "fancy-button/fancy-button"%>
+     <!-- Load TinyMCE -->
+    <%= javascript_include_tag "tiny-mce/jquery.tinymce"%>
+    
+    <%= javascript_include_tag 'setup' %>
+    <style type="text/css">
+        #progress-bar
+        {
+            width: 400px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container_12">
+        <div class="grid_12 header-repeat">
+            <div id="branding">
+                <div class="floatleft">
+                    <%= image_tag("logo.png", :alt => "Logo")%></div>
+	                <div class="floatright">
+	                    <div class="floatleft">
+	                        <%= image_tag "img-profile.jpg", :alt => "Usuário" %></div>
+	                    <div class="floatleft marginleft10">
+	                        <ul class="inline-ul floatleft">
+	                            
+	  							<li>
+	  							</li>
+	                        </ul>
+	                        <br />
+	                        <span class="small grey">Last Login: 3 hours ago</span>
+	                    </div>
+	                </div>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="grid_12">
+	        
+			<%= render :partial => 'layouts/menu'%>	         
+	        
+        </div>
+        <div class="clear">
+        </div>
+        <h3><%= flash[:error] %></h3>
+        <%= yield %>
+    <div class="clear">
+    </div>
+    <div id="site_info">
+        <p>
+            Copyright <a href="#">BlueWhale Admin</a>. All Rights Reserved.
+        </p>
+    </div>
+</body>
 </html>
+
+
