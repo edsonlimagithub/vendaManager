@@ -12,7 +12,7 @@
   <% end %>
  <div>
  	Cidade<br />
- 	<%= select :cidade, :id,  @cidades.collect {|c| [c.nome, c.id]}, {:include_blank => 'Selecione um vendedor'} %>
+ 	<%= select :cidade, :id,  @cidades.collect {|c| [c.nome, c.id]}, {:include_blank => 'Selecione uma Cidade'} %>
  </div>
  <div>
  	Vendedor<br />
