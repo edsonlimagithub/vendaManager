@@ -1,0 +1,2 @@
+module SincronizeHelper
+end

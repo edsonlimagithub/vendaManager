@@ -132,11 +132,6 @@ class ProdutosController < ApplicationController
     end
     render :json => produto_hash
   end
-  
-  def sincronize
-    @produtos = Produto.find(:all, :conditions => ["empresa = ?", params[:empresa_id]])
-    render json: @produtos
-  end
 	
 private 
   

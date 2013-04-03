@@ -5,11 +5,11 @@ class UsuariosController < ApplicationController
     @usuarios = Usuario.find(:all)
     @empresas = Empresa.all
 
-    # respond_to do |format|
-      # format.html # index.html.erb
-      # format.json { render json: @usuarios }
-    # end
-    render :json => @usuarios
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @usuarios }
+    end
+    # render :json => @usuarios
   end
 
   # GET /usuarios/1

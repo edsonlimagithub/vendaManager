@@ -66,7 +66,9 @@ VendaManager::Application.routes.draw do
 
   match '/kits/novo', :controller => 'kits', :action => 'novo'
   
-  match 'sincronize/produtos', :controller => 'produtos', :action => 'sincronize' 
+  match 'sincronize/produtos', :controller => 'sincronize', :action => 'sincronize_produtos'
+  match 'sincronize/clientes', :controller => 'sincronize', :action => 'sincronize_clientes'
+  match 'sincronize/usuarios', :controller => 'sincronize', :action => 'sincronize_usuarios' 
   
   root :to => 'login#login'
   #root :to => 'home#index'
