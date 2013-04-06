@@ -6,7 +6,7 @@ class SincronizeController < ApplicationController
   end
   
   def sincronize_clientes
-    @clientes = Cliente.find(:all, :conditions => ["empresa = ?", params[:empresa_id]])
+    @clientes = Cliente.find(:all, :conditions => ["empresa_id = ?", params[:empresa_id]])
     render json: @clientes
   end
   
