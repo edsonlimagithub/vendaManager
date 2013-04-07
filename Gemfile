@@ -5,6 +5,7 @@ gem 'jquery-rails'
 #gem 'ruby-debug19'
 gem 'debugger'
 #gem 'ruby-debug193'
+gem 'rake','~> 0.9.2.2'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'

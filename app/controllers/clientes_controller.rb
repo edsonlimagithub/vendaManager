@@ -2,8 +2,7 @@ class ClientesController < ApplicationController
   # GET /clientes
   # GET /clientes.json
   def index
-    @clientes = Cliente.find(:all, :conditions => ["empresa = ?", session[:usuario].empresa])
-
+    @clientes = Cliente.find(:all, :conditions => ["empresa_id = ?", session[:usuario].empresa])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @clientes }
